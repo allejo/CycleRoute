@@ -31,18 +31,12 @@ function App() {
   //     <NavBar />
   //     <div className="container flex-grow-1">
   //     {!user ? <span>Hello from Techtonica</span> : <span>Hello <Link to="api/me">{user.name}</Link></span> }
-  //     <Routes>
-  //     <Route path="/" element={<Students user={user}/>} />
-  //     <Route path="api/me" element={<Profile user={user}/>} />
-  //     </Routes>
   //     </div>
   //   </div>
   // );
   return (
     <div className="App">
       <Header />
-
-
       <Router>
       <Auth0ProviderWithHistory>
         <NavigationBar />
@@ -55,9 +49,6 @@ function App() {
         </Routes>
         </Auth0ProviderWithHistory>
       </Router>
-
-
-
       <Footer />
     </div>
   );
