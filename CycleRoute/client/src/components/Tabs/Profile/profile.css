@@ -1,0 +1,10 @@
+.profile-container{
+  margin: 1rem;
+}
+.user-photo{
+  margin: 1rem;
+}
+.user-photo-img{
+  border-radius: 50%;
+  width: 150px;
+}
