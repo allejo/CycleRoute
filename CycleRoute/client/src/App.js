@@ -12,7 +12,7 @@ import Favorites from './components/Tabs/Favorites/favorites';
 import Profile from './components/Tabs/Profile/profile';
 import LoginButton from './components/Auth0/Buttons/login-button';
 import LogoutButton from './components/Auth0/Buttons/logout-button';
-import BikeStations from './components/bikeStations';
+import BikeStations from './components/Tabs/Bike Stations/bikeStations';
 
 function App() {
 
