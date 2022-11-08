@@ -1,8 +1,7 @@
 
 // import NavBar from "./components/Auth0/nav-bar";
 // import Students from "./components/students";
-// import Profile from "./components/Auth0/profile";
-// import { useAuth0 } from '@auth0/auth0-react';
+import { useAuth0 } from '@auth0/auth0-react';
 // import Loading from "./components/Auth0/loading";
 // import { Route, Routes, Link } from 'react-router-dom';
 import './App.css';
@@ -15,18 +14,19 @@ import NavigationBar from './components/NavigationBar/navigationBar';
 import Home from './components/Tabs/Home/home';
 import Favorites from './components/Tabs/Favorites/favorites';
 import Login from './components/Tabs/Login/login';
-import Account from './components/Tabs/Account/account';
-import Auth0ProviderWithHistory from './auth/auth0-provider-with-history';
+import Profile from './components/Tabs/Profile/profile';
 
+import LoginButton from './components/Auth0/Buttons/login-button';
+import LogoutButton from './components/Auth0/Buttons/logout-button';
 function App() {
 
   // const { isLoading } = useAuth0();
-  // // const { user } = useAuth0();
+  const { user } = useAuth0();
   // if (isLoading) {
   //   return <Loading />;
   // }
 
-  // return (
+  //return (
   //   <div id="app" className="d-flex flex-column h-100">
   //     <NavBar />
   //     <div className="container flex-grow-1">
@@ -34,21 +34,26 @@ function App() {
   //     </div>
   //   </div>
   // );
+
   return (
     <div className="App">
       <Header />
-      <Router>
-      <Auth0ProviderWithHistory>
-        <NavigationBar />
-        <Routes >
-          <Route path="/" element={<Home />}></Route>
-          <Route path="/home" element={<Home />}></Route>
-          <Route path="/favorites" element={<Favorites />}></Route>
-          <Route path="/login" element={<Login />}></Route>
-          <Route path="/account" element={<Account />}></Route>
-        </Routes>
-        </Auth0ProviderWithHistory>
-      </Router>
+      <div>
+        {!user ? <LoginButton /> : <LogoutButton />}
+      </div>
+
+
+          <NavigationBar
+            user={user} />
+          <Routes >
+            <Route path="/" element={<Home />}></Route>
+            <Route path="/home" element={<Home />}></Route>
+            <Route path="/favorites" element={<Favorites />}></Route>
+            <Route path="/login" element={<Login />}></Route>
+            <Route path="/profile" element={<Profile user={user} />} />
+          </Routes>
+
+
       <Footer />
     </div>
   );
