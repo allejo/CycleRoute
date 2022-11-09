@@ -2,19 +2,19 @@ import React from 'react'
 import { useState } from "react";
 
 const SingleBikeStation = ({ singleBikeStation }) => {
-  const [flipPost, setFlipPost] = useState(false);
+  const [flipCard, setFlipCard] = useState(false);
   //If Image is null in DB, set a default photo
   // const [nullImage, setNullImage] = useState(null);
 
   //FLIPCARD
-  const handleFlipPost = () => {
-    setFlipPost(!flipPost)
+  const handleFlipCard = () => {
+    setFlipCard(!flipCard)
   }
 
   return (
         <div className="singleBikeStation">
-          {flipPost ? (
-            <div className='single-bikestation-card-full'>
+          {flipCard ? (
+            <div className='single-bikestation-card-full' onClick={handleFlipCard}>
     
               <div className="card-title">
                 {singleBikeStation.name}
@@ -36,16 +36,14 @@ const SingleBikeStation = ({ singleBikeStation }) => {
                 <p>Last Updated: {new Date(singleBikeStation.timestamp).toLocaleString()}</p>
               </div>
 
-              <button className='singleBikeStation-btn' onClick={handleFlipPost}>Close</button>
             </div>
           ) : (
-            <div className="single-bikestation-card-full">
+            <div className ="single-bikestation-card-full"onClick={handleFlipCard}>
 
               <div className="card-title">
                 <h2>Title: {singleBikeStation.name}</h2>
               </div>
 
-              <button className='singleBikeStation-btn' onClick={handleFlipPost}>View More</button>
             </div>
           )}
         </div>

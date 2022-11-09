@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import SingleBikeStation from './singleBikeStation';
-import "./bikeStations.css";
+import "../bikeStations.css";
 
 const BikeStations = () => {
   const [station, setStation] = useState([]);
