@@ -5,7 +5,7 @@ const Profile = (props) => {
   let user = props.user;
   console.log(user);
 
-
+console.log("Picture", user.picture)
   return (
     <div>
       <div className="profile-container">
@@ -16,6 +16,7 @@ const Profile = (props) => {
         className="user-photo-img"
       />
       </div>
+      
         <div className="user-name">
           <h2>Name:</h2> 
           <p>{user.name}</p>

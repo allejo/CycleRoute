@@ -9,7 +9,7 @@ const BikeStationsSF = () => {
 
   const fetchAllPosts = () => {
     console.log('fetchAllPosts')
-    fetch("http://api.citybik.es/v2/networks/bay-wheels")
+    fetch("http://api.citybik.es/v2/networks/")
       .then((response) => response.json())
       .then((data) => {
         console.log(data, "Testing from BikeStations fetch request.");
@@ -33,6 +33,7 @@ const BikeStationsSF = () => {
     setStation(filteredAllStations)
   }
 
+  //Potentionally all can go through the same return statement, just display its own component. Store each own in its own div
   return (
     <div>
       {/* SearchBar */}

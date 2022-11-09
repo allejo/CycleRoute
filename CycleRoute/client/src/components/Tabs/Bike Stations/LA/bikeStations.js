@@ -2,24 +2,23 @@ import { useState, useEffect } from 'react';
 import SingleBikeStation from './singleBikeStation';
 import "../bikeStations.css";
 
-const BikeStations = () => {
-  const [station, setStation] = useState([]);
+const BikeStations = ({bikeEndpoint}) => {
+  const [stations, setStations] = useState([]);
   //For Search Bar - to filter through stations
   const [allStations, setAllStations] = useState([]);
 
-  const fetchAllPosts = () => {
-    console.log('fetchAllPosts')
-    fetch("http://api.citybik.es/v2/networks/metro-bike-share")
+  const fetchAllStations = () => {
+    fetch(`http://api.citybik.es/v2/networks/${bikeEndpoint}`)
       .then((response) => response.json())
       .then((data) => {
         console.log(data, "Testing from BikeStations fetch request.");
         //by adding setAllStations, it allows us to see all the data returned to the cards for the search bar
         //network.stations needs to be added in order to access the stations KEY information directly. Since Stations Key is an array the info we will get for the useState is [].
         setAllStations(data.network.stations);
-        setStation(data.network.stations);
+        setStations(data.network.stations);
       });
   };
-  useEffect(fetchAllPosts, []);
+  useEffect(fetchAllStations, []);
 
   //FILTER FUNCTION - Search Bar
   const filterStations = event => {
@@ -30,7 +29,7 @@ const BikeStations = () => {
         .includes(value))
     )
     //setPosts(filteredAllCards) is to  display the cards we want to display at the time
-    setStation(filteredAllStations)
+    setStations(filteredAllStations)
   }
 
   return (
@@ -41,7 +40,7 @@ const BikeStations = () => {
 
         {/* By adding  .slice(), it allows you to slice the incoming data, so that you see the first array  issue.
         {station.slice(0,1).map((station, index) */}
-        {station.map((station, index) => {
+        {stations.map((station, index) => {
           return (
             <SingleBikeStation key={index} singleBikeStation={station} />
           )

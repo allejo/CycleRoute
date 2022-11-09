@@ -9,7 +9,7 @@ const BikeStationsSM = () => {
 
   const fetchAllPosts = () => {
     console.log('fetchAllPosts')
-    fetch("http://api.citybik.es/v2/networks/breeze-bike-share")
+    fetch("http://api.citybik.es/v2/networks/")
       .then((response) => response.json())
       .then((data) => {
         console.log(data, "Testing from BikeStations fetch request.");

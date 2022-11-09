@@ -87,6 +87,12 @@ app.delete('/api/students/:studentId', cors(), async (req, res) =>{
 // 	firstname varchar(255),
 //     email varchar(255), 
 //     sub varchar(255));
+
+//create own db with the info below. 
+//change the route, also change auuthentication btn so it matches
+//add picture as well, add to the post below
+
+//stores Auth0 info into an object
 app.post('/api/me', cors(), async (req, res) => {
   const newUser = {
     lastname: req.body.family_name,
@@ -97,21 +103,35 @@ app.post('/api/me', cors(), async (req, res) => {
   }
   //console.log(newUser);
 
-  const queryEmail = 'SELECT * FROM users WHERE email=$1 LIMIT 1';
-  const valuesEmail = [newUser.email]
-  const resultsEmail = await db.query(queryEmail, valuesEmail);
-  if(resultsEmail.rows[0]){
-    console.log(`Thank you ${resultsEmail.rows[0].firstname} for comming back`)
-  } else{
-  const query = 'INSERT INTO users(lastname, firstname, email, sub) VALUES($1, $2, $3, $4) RETURNING *'
-  const values = [newUser.lastname, newUser.firstname, newUser.email, newUser.sub]
-  const result = await db.query(query, values);
-  console.log(result.rows[0]);
+//This is still part of the post request
+//Checks if the email exists in db, if it does look for it; if it doesn't insert to db
 
-  }
+//   const queryEmail = 'SELECT * FROM users WHERE email=$1 LIMIT 1';
+//   const valuesEmail = [newUser.email]
+//   const resultsEmail = await db.query(queryEmail, valuesEmail);
+//   if( resultsEmail.length > 0 ){
+//     console.log(`Thank you ${resultsEmail.rows[0].firstname} for comming back`)
+//   } else{
+//   const query = 'INSERT INTO users(lastname, firstname, email, sub) VALUES($1, $2, $3, $4) RETURNING *'
+//   const values = [newUser.lastname, newUser.firstname, newUser.email, newUser.sub]
+//   const result = await db.query(query, values);
+//   console.log(result);
+//   }
+// });
 
+//ORIGINAL CODE - from Cristina
+const queryEmail = 'SELECT * FROM users WHERE email=$1 LIMIT 1';
+const valuesEmail = [newUser.email]
+const resultsEmail = await db.query(queryEmail, valuesEmail);
+if(resultsEmail.rows[0]){
+  console.log(`Thank you ${resultsEmail.rows[0].firstname} for comming back`)
+} else{
+const query = 'INSERT INTO users(lastname, firstname, email, sub) VALUES($1, $2, $3, $4) RETURNING *'
+const values = [newUser.lastname, newUser.firstname, newUser.email, newUser.sub]
+const result = await db.query(query, values);
+console.log(result.rows[0]);
+}
 });
-
 
 
 // console.log that your server is up and running
