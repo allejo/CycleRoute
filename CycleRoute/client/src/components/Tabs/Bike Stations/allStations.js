@@ -1,8 +1,6 @@
-// import React from 'react'
+import "./bikeStations.css";
+import BikeStations from './bikeStations';
 import { useState } from 'react';
-import BikeStations from './LA/bikeStations';
-import BikeStationsSF from './SF/bikesStationsSF';
-import BikeStationsSM from './SM/bikesStationsSM';
 
 function AllStations() {
   const [metro, setMetro] = useState(false);
@@ -14,39 +12,42 @@ function AllStations() {
   //if state is active, then set, if not....
   //do it for each one
   //place all in a container
-  const handleMetro = () => {
+
+  //Los Angeles Metro Bike Share
+  const displayMetro = () => {
     setMetro(!metro);
   }
-
-  const handleBayWheels = () => {
+//San Francisco Bay Wheels
+  const displayBayWheels = () => {
     setBayWheels(!bayWheels);
   }
-  const handleBreeze = () => {
+//Santa Monica Breeze Bike Share
+  const displayBreeze = () => {
     setBreeze(!breeze);
   }
 
   return (
     <div>
       {/* The logical AND (&&) operator returns the value to the right if the value to the left is truthy. */}
-      <button onClick={handleMetro}>Los Angeles Metro Bike Share</button>
+      <button onClick={displayMetro}>Los Angeles Metro Bike Share</button>
       {metro && (
         <div>
-          <BikeStations bikeEndpoint = "metro-bike-share"/>
+          <BikeStations apiEndpoint = "metro-bike-share"/>
         </div>
       )}
 
-< button onClick={handleBreeze}> Santa Monica Breeze Bike Share</button>
+< button onClick={displayBreeze}> Santa Monica Breeze Bike Share</button>
       {breeze && (
         <div>
-          <BikeStations bikeEndpoint = "breeze-bike-share"/>
+          <BikeStations apiEndpoint = "breeze-bike-share"/>
         </div>
       )
       }
 
-      <button onClick={handleBayWheels}>San Francisco Bay Wheels</button>
+      <button onClick={displayBayWheels}>San Francisco Bay Wheels</button>
       {bayWheels && (
         <div>
-          <BikeStationsSF bikeEndpoint = "bay-wheels"/>
+          <BikeStations apiEndpoint = "bay-wheels"/>
         </div>
       )}
 
@@ -54,7 +55,7 @@ function AllStations() {
   )
 }
 
-export default AllStations
+export default AllStations;
 
 //pass in as a parameter
 

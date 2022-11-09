@@ -1,7 +1,6 @@
-import React from 'react'
 import { useState } from "react";
 
-const SingleBikeStationSM = ({ singleBikeStationSM }) => {
+const BikeStationsCard = ({ singleCard }) => {
   const [flipCard, setFlipCard] = useState(false);
   //If Image is null in DB, set a default photo
   // const [nullImage, setNullImage] = useState(null);
@@ -17,23 +16,23 @@ const SingleBikeStationSM = ({ singleBikeStationSM }) => {
         <div className='single-bikestation-card-full' onClick={handleFlipCard}>
 
           <div className="card-title">
-            {singleBikeStationSM.name}
+            {singleCard.name}
           </div>
 
           <div className="card-adress">
-            <p>Address: {singleBikeStationSM.extra.address}</p>
+            <p>Address: {singleCard.extra.address}</p>
           </div>
 
           <div className="card-bikes-available">
-            <p>Bikes Available : {singleBikeStationSM.free_bikes}</p>
+            <p>Bikes Available : {singleCard.free_bikes}</p>
           </div>
 
           <div className="card-docks-available">
-            <p>Docks Available: {singleBikeStationSM.empty_slots}</p>
+            <p>Docks Available: {singleCard.empty_slots}</p>
           </div>
 
           <div className="card-updated">
-            <p>Last Updated: {new Date(singleBikeStationSM.timestamp).toLocaleString()}</p>
+            <p>Last Updated: {new Date(singleCard.timestamp).toLocaleString()}</p>
           </div>
 
         </div>
@@ -41,7 +40,7 @@ const SingleBikeStationSM = ({ singleBikeStationSM }) => {
         <div className="single-bikestation-card-full" onClick={handleFlipCard}>
 
           <div className="card-title">
-            <h2>Title: {singleBikeStationSM.name}</h2>
+            <h2>Title: {singleCard.name}</h2>
           </div>
 
         </div>
@@ -51,4 +50,4 @@ const SingleBikeStationSM = ({ singleBikeStationSM }) => {
   )
 }
 
-export default SingleBikeStationSM;
+export default BikeStationsCard;
