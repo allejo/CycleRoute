@@ -4,6 +4,7 @@ import BikeStations from './bikeStations';
 import Screenshot from "../../screenshot";
 
 function AllStations() {
+  const [disabled, setDisabled] = useState(false);
   const [metro, setMetro] = useState(false);
   const [bayWheels, setBayWheels] = useState(false);
   const [breeze, setBreeze] = useState(false);
@@ -24,14 +25,19 @@ function AllStations() {
   const displayBreeze = () => {
     setBreeze(!breeze);
   }
+  //css rule to pass as disable - last night's example
+  //or add a state to your component true/false
+  //may need to add another parent to this , this could potentially disable the other buttons, and call the info you want and only that info
+  //parent component for all the buttons
+  //try following a similar format for endpoint for button - to call that particular info
 
   return (
     <div>
       <div>
         {/* The logical AND (&&) operator returns the value to the right if the value to the left is truthy. */}
-        <button className="display-btns" onClick={displayMetro}>Los Angeles Metro Bike Share</button>
-        < button className="display-btns" onClick={displayBreeze}> Santa Monica Breeze Bike Share</button>
-        <button className="display-btns" onClick={displayBayWheels}>San Francisco Bay Wheels</button>
+        <button className="display-btns" onClick={displayMetro} disabled={disabled}>Los Angeles Metro Bike Share</button>
+        < button className="display-btns" onClick={displayBreeze} disabled={disabled}> Santa Monica Breeze Bike Share</button>
+        <button className="display-btns" onClick={displayBayWheels} disabled={disabled}>San Francisco Bay Wheels</button>
       </div>
       
     <div>
@@ -41,6 +47,7 @@ function AllStations() {
 
 
       <div>
+
         {metro && (
           <div>
             <BikeStations apiEndpoint="metro-bike-share" />

@@ -13,6 +13,7 @@ import Profile from './components/Tabs/Profile/profile';
 import LoginButton from './components/Auth0/Buttons/login-button';
 import LogoutButton from './components/Auth0/Buttons/logout-button';
 import AllStations from './components/Tabs/Bike Stations/allStations';
+import NavBar from './components/Auth0/Nav/nav-bar';
 
 function App() {
 
@@ -25,10 +26,11 @@ function App() {
 
   return (
     <div className="App">
+      <NavBar />
       <Header />
       {/* If user is NOT signed in, display Login button; otherwise display Logout*/}
       <div className='auth0-btns-section'>
-        {!user ? <LoginButton /> : <LogoutButton />}
+        {/* {!user ? <LoginButton /> : <LogoutButton />} */}
       </div>
       <NavigationBar
         user={user} />

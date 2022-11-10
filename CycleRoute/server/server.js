@@ -15,60 +15,60 @@ app.get('/', (req, res) => {
 });
 
 // create the get request
-app.get('/users', cors(), async (req, res) => {
-  try {
-    const { rows: users } = await db.query('SELECT * FROM users');
-    res.send(users);
-  } catch (e) {
-    return res.status(400).json({ e });
-  }
-});
+// app.get('/users', cors(), async (req, res) => {
+//   try {
+//     const { rows: users } = await db.query('SELECT * FROM users');
+//     res.send(users);
+//   } catch (e) {
+//     return res.status(400).json({ e });
+//   }
+// });
 
-// create the POST request
-app.post('/users', cors(), async (req, res) => {
-  const newUser = {
-    firstname: req.body.firstname,
-    lastname: req.body.lastname,
-  };
-  console.log([newUser.firstname, newUser.lastname]);
-  const result = await db.query(
-    'INSERT INTO users(firstname, lastname) VALUES($1, $2) RETURNING *',
-    [newUser.firstname, newUser.lastname],
-  );
-  console.log(result.rows[0]);
-  res.json(result.rows[0]);
-});
+// // create the POST request
+// app.post('/users', cors(), async (req, res) => {
+//   const newUser = {
+//     firstname: req.body.firstname,
+//     lastname: req.body.lastname,
+//   };
+//   console.log([newUser.firstname, newUser.lastname]);
+//   const result = await db.query(
+//     'INSERT INTO users(firstname, lastname) VALUES($1, $2) RETURNING *',
+//     [newUser.firstname, newUser.lastname],
+//   );
+//   console.log(result.rows[0]);
+//   res.json(result.rows[0]);
+// });
 
-//A put request - Update a student 
-app.put('/users/:userId', cors(), async (req, res) =>{
-  console.log(req.params);
-  //This will be the id that I want to find in the DB - the student to be updated
-  const userId = req.params.userId
-  const updatedUser = { id: req.body.id, firstname: req.body.firstname, lastname: req.body.lastname}
-  console.log("In the server from the url - the user id", userId);
-  console.log("In the server, from the react - the user to be edited", updatedUser);
-  // UPDATE students SET lastname = "something" WHERE id="16";
-  const query = `UPDATE users SET lastname=$1, firstname=$2 WHERE id=${userId} RETURNING *`;
-  const values = [updatedUser.lastname, updatedUser.firstname];
-  try {
-    const updated = await db.query(query, values);
-    console.log(updated.rows[0]);
-    res.send(updated.rows[0]);
+// //A put request - Update a student 
+// app.put('/users/:userId', cors(), async (req, res) =>{
+//   console.log(req.params);
+//   //This will be the id that I want to find in the DB - the student to be updated
+//   const userId = req.params.userId
+//   const updatedUser = { id: req.body.id, firstname: req.body.firstname, lastname: req.body.lastname}
+//   console.log("In the server from the url - the user id", userId);
+//   console.log("In the server, from the react - the user to be edited", updatedUser);
+//   // UPDATE students SET lastname = "something" WHERE id="16";
+//   const query = `UPDATE users SET lastname=$1, firstname=$2 WHERE id=${userId} RETURNING *`;
+//   const values = [updatedUser.lastname, updatedUser.firstname];
+//   try {
+//     const updated = await db.query(query, values);
+//     console.log(updated.rows[0]);
+//     res.send(updated.rows[0]);
 
-  }catch(e){
-    console.log(e);
-    return res.status(400).json({e})
-  }
-})
+//   }catch(e){
+//     console.log(e);
+//     return res.status(400).json({e})
+//   }
+// })
 
-// delete request
-app.delete('/users/:userId', cors(), async (req, res) =>{
-  const userId = req.params.userId;
-  //console.log("From the delete request-url", req.params);
-  await db.query('DELETE FROM users WHERE id=$1', [userId]);
-  res.status(200).end();
+// // delete request
+// app.delete('/users/:userId', cors(), async (req, res) =>{
+//   const userId = req.params.userId;
+//   //console.log("From the delete request-url", req.params);
+//   await db.query('DELETE FROM users WHERE id=$1', [userId]);
+//   res.status(200).end();
 
-});
+// });
 
 app.post('/users', cors(), async (req, res) => {
   const newUser = {
@@ -79,37 +79,37 @@ app.post('/users', cors(), async (req, res) => {
     image: req.body.picture
 
   }
-  //console.log(newUser);
+  console.log(newUser);
 
 //This is still part of the post request
 //Checks if the email exists in db, if it does look for it; if it doesn't insert to db
 
-//   const queryEmail = 'SELECT * FROM users WHERE email=$1 LIMIT 1';
-//   const valuesEmail = [newUser.email]
-//   const resultsEmail = await db.query(queryEmail, valuesEmail);
-  // if( resultsEmail.length() > 0 ){
-//     console.log(`Thank you ${resultsEmail.rows[0].firstname} for comming back`)
-//   } else{
-//   const query = 'INSERT INTO users(lastname, firstname, email, sub) VALUES($1, $2, $3, $4) RETURNING *'
-//   const values = [newUser.lastname, newUser.firstname, newUser.email, newUser.sub]
-//   const result = await db.query(query, values);
-  // console.log(result);
-//   }
-// });
+  const queryEmail = 'SELECT * FROM users WHERE email=$1 LIMIT 1';
+  const valuesEmail = [newUser.email]
+  const resultsEmail = await db.query(queryEmail, valuesEmail);
+  if( resultsEmail.rows.length > 0 ){
+    console.log(`Thank you for comming back`)
+  } else{
+  const query = 'INSERT INTO users(lastname, firstname, email, sub, image) VALUES($1, $2, $3, $4, $5) RETURNING *'
+  const values = [newUser.lastname, newUser.firstname, newUser.email, newUser.sub, newUser.image]
+  const result = await db.query(query, values);
+  console.log(result);
+  }
+});
 
 //ORIGINAL CODE - from Cristina
-const queryEmail = 'SELECT * FROM users WHERE email=$1 LIMIT 1';
-const valuesEmail = [newUser.email]
-const resultsEmail = await db.query(queryEmail, valuesEmail);
-if(resultsEmail.rows[0]){
-  console.log(`Thank you ${resultsEmail.rows[0].firstname} for comming back`)
-} else{
-const query = 'INSERT INTO users(lastname, firstname, email, sub, image) VALUES($1, $2, $3, $4, $5) RETURNING *'
-const values = [newUser.lastname, newUser.firstname, newUser.email, newUser.sub, newUser.picture]
-const result = await db.query(query, values);
-console.log(result.rows[0]);
-}
-});
+// const queryEmail = 'SELECT * FROM users WHERE email=$1 LIMIT 1';
+// const valuesEmail = [newUser.email]
+// const resultsEmail = await db.query(queryEmail, valuesEmail);
+// if(resultsEmail.rows[0]){
+//   console.log(`Thank you ${resultsEmail.rows[0].firstname} for comming back`)
+// } else{
+// const query = 'INSERT INTO users(lastname, firstname, email, sub, image) VALUES($1, $2, $3, $4, $5) RETURNING *'
+// const values = [newUser.lastname, newUser.firstname, newUser.email, newUser.sub, newUser.picture]
+// const result = await db.query(query, values);
+// console.log(result.rows[0]);
+// }
+// });
 
 // console.log that your server is up and running
 app.listen(PORT, () => {
