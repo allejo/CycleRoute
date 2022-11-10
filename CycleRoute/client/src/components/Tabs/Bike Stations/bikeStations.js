@@ -16,6 +16,7 @@ const BikeStations = ({ apiEndpoint }) => {
         setStations(data.network.stations);
       });
   };
+  
   useEffect(fetchStationsData, []);
 
   //FILTER FUNCTION - Search Bar

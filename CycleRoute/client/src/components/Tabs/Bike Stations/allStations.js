@@ -7,11 +7,9 @@ function AllStations() {
   const [bayWheels, setBayWheels] = useState(false);
   const [breeze, setBreeze] = useState(false);
 
-
   //create a sep state to see if its active or not
   //if state is active, then set, if not....
   //do it for each one
-  //place all in a container
 
   //Los Angeles Metro Bike Share
   const displayMetro = () => {
@@ -30,9 +28,9 @@ function AllStations() {
     <div>
       <div>
         {/* The logical AND (&&) operator returns the value to the right if the value to the left is truthy. */}
-        <button onClick={displayMetro}>Los Angeles Metro Bike Share</button>
-        < button onClick={displayBreeze}> Santa Monica Breeze Bike Share</button>
-        <button onClick={displayBayWheels}>San Francisco Bay Wheels</button>
+        <button className="display-btns" onClick={displayMetro}>Los Angeles Metro Bike Share</button>
+        < button className="display-btns" onClick={displayBreeze}> Santa Monica Breeze Bike Share</button>
+        <button className="display-btns" onClick={displayBayWheels}>San Francisco Bay Wheels</button>
       </div>
       
       <div>

@@ -9,39 +9,30 @@ const PORT = 8018;
 app.use(cors());
 app.use(express.json());
 
-// creates an endpoint for the route /api
+// creates an endpoint for the route
 app.get('/', (req, res) => {
-  res.json({ message: 'Hello from My template ExpressJS' });
+  res.json('Message from the backend.');
 });
 
 // create the get request
-app.get('/api/students', cors(), async (req, res) => {
-  // const STUDENTS = [
-
-  //     { id: 1, firstName: 'Lisa', lastName: 'Lee' },
-  //     { id: 2, firstName: 'Eileen', lastName: 'Long' },
-  //     { id: 3, firstName: 'Fariba', lastName: 'Dadko' },
-  //     { id: 4, firstName: 'Cristina', lastName: 'Rodriguez' },
-  //     { id: 5, firstName: 'Andrea', lastName: 'Trejo' },
-  // ];
-  // res.json(STUDENTS);
+app.get('/users', cors(), async (req, res) => {
   try {
-    const { rows: students } = await db.query('SELECT * FROM students');
-    res.send(students);
+    const { rows: users } = await db.query('SELECT * FROM users');
+    res.send(users);
   } catch (e) {
     return res.status(400).json({ e });
   }
 });
 
 // create the POST request
-app.post('/api/students', cors(), async (req, res) => {
+app.post('/users', cors(), async (req, res) => {
   const newUser = {
     firstname: req.body.firstname,
     lastname: req.body.lastname,
   };
   console.log([newUser.firstname, newUser.lastname]);
   const result = await db.query(
-    'INSERT INTO students(firstname, lastname) VALUES($1, $2) RETURNING *',
+    'INSERT INTO users(firstname, lastname) VALUES($1, $2) RETURNING *',
     [newUser.firstname, newUser.lastname],
   );
   console.log(result.rows[0]);
@@ -49,16 +40,16 @@ app.post('/api/students', cors(), async (req, res) => {
 });
 
 //A put request - Update a student 
-app.put('/api/students/:studentId', cors(), async (req, res) =>{
+app.put('/users/:userId', cors(), async (req, res) =>{
   console.log(req.params);
   //This will be the id that I want to find in the DB - the student to be updated
-  const studentId = req.params.studentId
-  const updatedStudent = { id: req.body.id, firstname: req.body.firstname, lastname: req.body.lastname}
-  console.log("In the server from the url - the student id", studentId);
-  console.log("In the server, from the react - the student to be edited", updatedStudent);
+  const userId = req.params.userId
+  const updatedUser = { id: req.body.id, firstname: req.body.firstname, lastname: req.body.lastname}
+  console.log("In the server from the url - the user id", userId);
+  console.log("In the server, from the react - the user to be edited", updatedUser);
   // UPDATE students SET lastname = "something" WHERE id="16";
-  const query = `UPDATE students SET lastname=$1, firstname=$2 WHERE id=${studentId} RETURNING *`;
-  const values = [updatedStudent.lastname, updatedStudent.firstname];
+  const query = `UPDATE users SET lastname=$1, firstname=$2 WHERE id=${userId} RETURNING *`;
+  const values = [updatedUser.lastname, updatedUser.firstname];
   try {
     const updated = await db.query(query, values);
     console.log(updated.rows[0]);
@@ -71,34 +62,21 @@ app.put('/api/students/:studentId', cors(), async (req, res) =>{
 })
 
 // delete request
-app.delete('/api/students/:studentId', cors(), async (req, res) =>{
-  const studentId = req.params.studentId;
+app.delete('/users/:userId', cors(), async (req, res) =>{
+  const userId = req.params.userId;
   //console.log("From the delete request-url", req.params);
-  await db.query('DELETE FROM students WHERE id=$1', [studentId]);
+  await db.query('DELETE FROM users WHERE id=$1', [userId]);
   res.status(200).end();
 
 });
 
-
-// create the POST request for a new user
-// CREATE TABLE users (
-// 	ID SERIAL PRIMARY KEY,
-// 	lastname varchar(255),
-// 	firstname varchar(255),
-//     email varchar(255), 
-//     sub varchar(255));
-
-//create own db with the info below. 
-//change the route, also change auuthentication btn so it matches
-//add picture as well, add to the post below
-
-//stores Auth0 info into an object
-app.post('/api/me', cors(), async (req, res) => {
+app.post('/users', cors(), async (req, res) => {
   const newUser = {
     lastname: req.body.family_name,
     firstname: req.body.given_name,
     email: req.body.email,
-    sub: req.body.sub
+    sub: req.body.sub,
+    image: req.body.picture
 
   }
   //console.log(newUser);
@@ -126,15 +104,14 @@ const resultsEmail = await db.query(queryEmail, valuesEmail);
 if(resultsEmail.rows[0]){
   console.log(`Thank you ${resultsEmail.rows[0].firstname} for comming back`)
 } else{
-const query = 'INSERT INTO users(lastname, firstname, email, sub) VALUES($1, $2, $3, $4) RETURNING *'
-const values = [newUser.lastname, newUser.firstname, newUser.email, newUser.sub]
+const query = 'INSERT INTO users(lastname, firstname, email, sub, image) VALUES($1, $2, $3, $4, $5) RETURNING *'
+const values = [newUser.lastname, newUser.firstname, newUser.email, newUser.sub, newUser.picture]
 const result = await db.query(query, values);
 console.log(result.rows[0]);
 }
 });
 
-
 // console.log that your server is up and running
 app.listen(PORT, () => {
-  console.log(`Server listening on ${PORT}`);
+  console.log(`Server is running on PORT: ${PORT}.`);
 });
