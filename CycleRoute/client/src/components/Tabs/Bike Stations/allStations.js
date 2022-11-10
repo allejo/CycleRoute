@@ -1,6 +1,7 @@
 import "./bikeStations.css";
-import BikeStations from './bikeStations';
 import { useState } from 'react';
+import BikeStations from './bikeStations';
+import Screenshot from "../../screenshot";
 
 function AllStations() {
   const [metro, setMetro] = useState(false);
@@ -33,6 +34,12 @@ function AllStations() {
         <button className="display-btns" onClick={displayBayWheels}>San Francisco Bay Wheels</button>
       </div>
       
+    <div>
+      <Screenshot />
+    </div>
+
+
+
       <div>
         {metro && (
           <div>

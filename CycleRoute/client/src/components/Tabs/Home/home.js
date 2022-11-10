@@ -1,7 +1,7 @@
 import "./home.css";
 import React, { useRef, useState } from 'react';
-
 import { GoogleMap, useJsApiLoader, MarkerF, BicyclingLayer, Autocomplete, DirectionsRenderer, DirectionsService } from '@react-google-maps/api';
+import Screenshot from "../../screenshot";
 
 //Map Containter Size
 const containerStyle = {
@@ -160,6 +160,7 @@ const Home = () => {
               />
             </GoogleMap>
             <button className="map-button">Like</button>
+
           </div>
 
         </div>
