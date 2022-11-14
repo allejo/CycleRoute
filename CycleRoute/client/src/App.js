@@ -24,7 +24,7 @@ function App() {
 
   return (
     <div className="App">
-      <NavBar />
+      <NavBar className="navbar"/>
       <Header />
       {/* If user is NOT signed in, display Login button; otherwise display Logout*/}
       <div className='auth0-btns-section'>
