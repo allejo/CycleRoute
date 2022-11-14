@@ -1,6 +1,7 @@
 import "./bikeStations.css";
 import { useState } from 'react';
 import BikeStations from './bikeStations';
+import cycleRouteLogoSquare from "../../Images/cycleRouteLogoSquare.png";
 
 
 function AllStations() {
@@ -32,7 +33,7 @@ function AllStations() {
 
   return (
     <div>
-      <div>
+      <div className="display-btns">
         {/* The logical AND (&&) operator returns the value to the right if the value to the left is truthy. */}
         <button className="display-btns" onClick={displayMetro} >Los Angeles Metro Bike Share</button>
         < button className="display-btns" onClick={displayBreeze} > Santa Monica Breeze Bike Share</button>
@@ -63,8 +64,12 @@ function AllStations() {
           </div>
         )}
       </div>
+      <div className="allstations-logo">
+      <img src={cycleRouteLogoSquare} className='cycleRoute-square' alt='logo'/>
+      </div>
 
     </div >
+
   )
 }
 

@@ -16,23 +16,23 @@ const BikeStationsCard = ({ singleCard }) => {
         <div className='single-bikestation-card-full' onClick={handleFlipCard}>
 
           <div className="card-title">
-            {singleCard.name}
+            <h1>{singleCard.name}</h1>
           </div>
 
           <div className="card-adress">
-            <p>Address: {singleCard.extra.address}</p>
+            <p><strong>Address:</strong> {singleCard.extra.address}</p>
           </div>
 
           <div className="card-bikes-available">
-            <p>Bikes Available : {singleCard.free_bikes}</p>
+            <p><strong>Bikes Available : </strong>{singleCard.free_bikes}</p>
           </div>
 
           <div className="card-docks-available">
-            <p>Docks Available: {singleCard.empty_slots}</p>
+            <p><strong>Docks Available: </strong>{singleCard.empty_slots}</p>
           </div>
 
           <div className="card-updated">
-            <p>Last Updated: {new Date(singleCard.timestamp).toLocaleString()}</p>
+            <p><strong>Last Updated: </strong>{new Date(singleCard.timestamp).toLocaleString()}</p>
           </div>
 
         </div>
@@ -40,7 +40,7 @@ const BikeStationsCard = ({ singleCard }) => {
         <div className="single-bikestation-card-full" onClick={handleFlipCard}>
 
           <div className="card-title">
-            <h2>Title: {singleCard.name}</h2>
+            <h1>{singleCard.name}</h1>
           </div>
 
         </div>

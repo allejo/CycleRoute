@@ -5,7 +5,7 @@ const Header = () => {
 
   return (
     <div className="header-component">
-      <img src = {cycleRouteBanner} className='cycleRoute-logo' alt='logo'/>
+      <img src = {cycleRouteBanner} className='cycleRoute-banner' alt='logo'/>
       
     </div>
   )
