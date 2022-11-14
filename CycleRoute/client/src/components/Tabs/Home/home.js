@@ -1,7 +1,6 @@
 import "./home.css";
 import React, { useRef, useState } from 'react';
 import { GoogleMap, useJsApiLoader, MarkerF, BicyclingLayer, Autocomplete, DirectionsRenderer, DirectionsService } from '@react-google-maps/api';
-import Screenshot from "../../screenshot";
 
 //Map Containter Size
 const containerStyle = {
@@ -16,7 +15,6 @@ const center = {
 };
 
 const Home = () => {
-
   const [map, setMap] = useState( /** @type google.maps.Map */(null));
   //For DirectionsRenderer: Displays the Route 
   const [directionsResponse, setDirectionsResponse] = useState(null);
@@ -110,6 +108,9 @@ const Home = () => {
               <h2>Duration: {duration}</h2>
             </div>
           </div>
+
+          <div>
+    </div>
 
           <div className='home-map'>
             <GoogleMap

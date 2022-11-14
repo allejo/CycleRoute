@@ -1,19 +1,17 @@
+import './App.css';
 import { useAuth0 } from '@auth0/auth0-react';
 // import Loading from "./components/Auth0/loading";
-import './App.css';
 import React from 'react';
 import { ReactDOM } from 'react';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import NavigationBar from './components/NavigationBar/navigationBar';
+import NavBar from './components/Auth0/Nav/nav-bar';
 import Header from "./components/Margins/header";
 import Footer from './components/Margins/footer';
-import NavigationBar from './components/NavigationBar/navigationBar';
 import Home from './components/Tabs/Home/home';
 import Favorites from './components/Tabs/Favorites/favorites';
 import Profile from './components/Tabs/Profile/profile';
-import LoginButton from './components/Auth0/Buttons/login-button';
-import LogoutButton from './components/Auth0/Buttons/logout-button';
 import AllStations from './components/Tabs/Bike Stations/allStations';
-import NavBar from './components/Auth0/Nav/nav-bar';
 
 function App() {
 

@@ -1,10 +1,9 @@
 import "./bikeStations.css";
 import { useState } from 'react';
 import BikeStations from './bikeStations';
-import Screenshot from "../../screenshot";
+
 
 function AllStations() {
-  const [disabled, setDisabled] = useState(false);
   const [metro, setMetro] = useState(false);
   const [bayWheels, setBayWheels] = useState(false);
   const [breeze, setBreeze] = useState(false);
@@ -35,14 +34,11 @@ function AllStations() {
     <div>
       <div>
         {/* The logical AND (&&) operator returns the value to the right if the value to the left is truthy. */}
-        <button className="display-btns" onClick={displayMetro} disabled={disabled}>Los Angeles Metro Bike Share</button>
-        < button className="display-btns" onClick={displayBreeze} disabled={disabled}> Santa Monica Breeze Bike Share</button>
-        <button className="display-btns" onClick={displayBayWheels} disabled={disabled}>San Francisco Bay Wheels</button>
+        <button className="display-btns" onClick={displayMetro} >Los Angeles Metro Bike Share</button>
+        < button className="display-btns" onClick={displayBreeze} > Santa Monica Breeze Bike Share</button>
+        <button className="display-btns" onClick={displayBayWheels} >San Francisco Bay Wheels</button>
       </div>
-      
-    <div>
-      <Screenshot />
-    </div>
+    
 
 
 
