@@ -5,6 +5,7 @@ const BikeStations = ({ apiEndpoint }) => {
   const [stations, setStations] = useState([]);
   const [searchStations, setSearchStations] = useState([]);
 
+
   const fetchStationsData = () => {
     fetch(`http://api.citybik.es/v2/networks/${apiEndpoint}`)
       .then((response) => response.json())
@@ -16,7 +17,7 @@ const BikeStations = ({ apiEndpoint }) => {
         setStations(data.network.stations);
       });
   };
-  
+
   useEffect(fetchStationsData, []);
 
   //FILTER FUNCTION - Search Bar

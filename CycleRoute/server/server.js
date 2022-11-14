@@ -66,56 +66,38 @@ app.get('/', (req, res) => {
 // })
 
 // // delete request
-// app.delete('/users/:userId', cors(), async (req, res) =>{
-//   const userId = req.params.userId;
-//   //console.log("From the delete request-url", req.params);
-//   await db.query('DELETE FROM users WHERE id=$1', [userId]);
-//   res.status(200).end();
+app.delete('/users/:userId', cors(), async (req, res) =>{
+  const userId = req.params.userId;
+  //console.log("From the delete request-url", req.params);
+  await db.query('DELETE FROM users WHERE id=$1', [userId]);
+  res.status(200).end();
+});
 
-// });
-
+//POST - USERS LOGGED IN
 app.post('/users', cors(), async (req, res) => {
   const newUser = {
-    lastname: req.body.family_name,
-    firstname: req.body.given_name,
+    firstname: req.body.name,
+    username: req.body.nickname,
     email: req.body.email,
     sub: req.body.sub,
     image: req.body.picture
-
   }
   console.log(newUser);
 
-//This is still part of the post request
-//Checks if the email exists in db, if it does look for it; if it doesn't insert to db
-
+  //Checks if the email exists in users table, if it does look for it & don't duplicate; if it doesn't exist insert to users table.
   const queryEmail = 'SELECT * FROM users WHERE email=$1 LIMIT 1';
   const valuesEmail = [newUser.email]
   const resultsEmail = await db.query(queryEmail, valuesEmail);
-  if( resultsEmail.rows.length > 0 ){
+  if (resultsEmail.rows.length > 0) {
     console.log(`Thank you for comming back`)
-  } else{
-  const query = 'INSERT INTO users(lastname, firstname, email, sub, image) VALUES($1, $2, $3, $4, $5) RETURNING *'
-  const values = [newUser.lastname, newUser.firstname, newUser.email, newUser.sub, newUser.image]
-  const result = await db.query(query, values);
-  console.log(result);
+  } else {
+    const query = 'INSERT INTO users(firstname, username, email, sub, image) VALUES($1, $2, $3, $4, $5) RETURNING *'
+    const values = [newUser.firstname, newUser.username, newUser.email, newUser.sub, newUser.image]
+    const result = await db.query(query, values);
+    console.log(result);
   }
 });
 
-//ORIGINAL CODE - from Cristina
-// const queryEmail = 'SELECT * FROM users WHERE email=$1 LIMIT 1';
-// const valuesEmail = [newUser.email]
-// const resultsEmail = await db.query(queryEmail, valuesEmail);
-// if(resultsEmail.rows[0]){
-//   console.log(`Thank you ${resultsEmail.rows[0].firstname} for comming back`)
-// } else{
-// const query = 'INSERT INTO users(lastname, firstname, email, sub, image) VALUES($1, $2, $3, $4, $5) RETURNING *'
-// const values = [newUser.lastname, newUser.firstname, newUser.email, newUser.sub, newUser.picture]
-// const result = await db.query(query, values);
-// console.log(result.rows[0]);
-// }
-// });
-
-// console.log that your server is up and running
 app.listen(PORT, () => {
   console.log(`Server is running on PORT: ${PORT}.`);
 });

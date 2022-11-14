@@ -1,5 +1,6 @@
 .profile-container{
   margin: 1rem;
+  font-size: 25px;
 }
 .user-photo{
   margin: 1rem;
@@ -8,3 +9,4 @@
   border-radius: 50%;
   width: 150px;
 }
+
