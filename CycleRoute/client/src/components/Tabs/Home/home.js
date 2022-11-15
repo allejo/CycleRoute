@@ -1,36 +1,30 @@
 import "./home.css";
 import React, { useRef, useState } from 'react';
-import { useJsApiLoader, Autocomplete} from '@react-google-maps/api';
+import { useJsApiLoader, Autocomplete } from '@react-google-maps/api';
 import Map from "../../map";
 
-//Default Location for Map: Los Angeles, CA
-const center = {
-  lat: 34.052235,
-  lng: -118.243683
-};
+
 
 const Home = () => {
   const [map, setMap] = useState( /** @type google.maps.Map */(null));
   //To Display Bike Route Distance & Duration (Directions API)
   const [distance, setDistance] = useState('');
   const [duration, setDuration] = useState('');
-
+  //For DirectionsService: Takes Start & End Locations
+  const [originPlace, setOriginPlace] = useState(null)
+  const [destinationPlace, setDestinationPlace] = useState(null)
+  
   //Autocomplete (as per documentation) - for the originPlace/destinationPlace
   //Places API
   const originAutocompleteRef = useRef(null)
   const destinationAutocompleteRef = useRef(null)
-
-
+  
   //Required to access Maps API and Places API/Library
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: process.env.REACT_APP_API_KEY,
     libraries: ['places'],
   })
-
-  //For DirectionsService: Takes Start & End Locations
-  const [originPlace, setOriginPlace] = useState(null)
-  const [destinationPlace, setDestinationPlace] = useState(null)
-
+  
   //onClick to Submit Info & Display Route on Map
   //getPlace(): Place interface contains info to locate, identify/describe a place for DirectionsRequest/DistanceMatrixRequest
   //geometry - api library; allows us to access the latlng
@@ -42,7 +36,12 @@ const Home = () => {
     setOriginPlace(originAutocompleteRef.current?.getPlace()?.geometry?.location)
     setDestinationPlace(destinationAutocompleteRef.current?.getPlace()?.geometry?.location)
   }
-
+  
+  //Default Location for Map: Los Angeles, CA
+  const center = {
+    lat: 34.052235,
+    lng: -118.243683
+  };
 
   //CATCH
   if (!isLoaded) {
@@ -85,8 +84,8 @@ const Home = () => {
           </div>
 
           <div>
-            <Map originPlace={originPlace} destinationPlace={destinationPlace} onMapLoad={setMap} onDurationChange={setDuration} onDistanceChange={setDistance}/>
-    </div>
+            <Map originPlace={originPlace} destinationPlace={destinationPlace} onMapLoad={setMap} onDurationChange={setDuration} onDistanceChange={setDistance} center={center} />
+          </div>
 
         </div>
       </div>
