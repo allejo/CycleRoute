@@ -1,6 +1,5 @@
 import "./home.css";
 import React, { useRef, useState } from 'react';
-
 import { GoogleMap, useJsApiLoader, MarkerF, BicyclingLayer, Autocomplete, DirectionsRenderer, DirectionsService } from '@react-google-maps/api';
 
 //Map Containter Size
@@ -16,7 +15,6 @@ const center = {
 };
 
 const Home = () => {
-
   const [map, setMap] = useState( /** @type google.maps.Map */(null));
   //For DirectionsRenderer: Displays the Route 
   const [directionsResponse, setDirectionsResponse] = useState(null);
@@ -77,7 +75,6 @@ const Home = () => {
   } else {
     return (
       <div className="home">
-        <h1>This is the Home page.</h1>
         <div className="map-container">
 
           <div className="search-bar-map">
@@ -111,6 +108,9 @@ const Home = () => {
               <h2>Duration: {duration}</h2>
             </div>
           </div>
+
+          <div>
+    </div>
 
           <div className='home-map'>
             <GoogleMap
@@ -161,6 +161,7 @@ const Home = () => {
               />
             </GoogleMap>
             <button className="map-button">Like</button>
+
           </div>
 
         </div>

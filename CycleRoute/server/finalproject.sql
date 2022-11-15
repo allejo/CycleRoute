@@ -1,4 +1,4 @@
---
+-- Terminal: pg_dump -d nameOfDatabase;
 -- PostgreSQL database dump
 --
 
@@ -21,7 +21,7 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
--- Name: favorites; Type: TABLE; Schema: public; Owner: tpl522_10
+-- Name: favorites; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.favorites (
@@ -36,10 +36,10 @@ CREATE TABLE public.favorites (
 );
 
 
-ALTER TABLE public.favorites OWNER TO tpl522_10;
+ALTER TABLE public.favorites OWNER TO postgres;
 
 --
--- Name: favorites_id_seq; Type: SEQUENCE; Schema: public; Owner: tpl522_10
+-- Name: favorites_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
 ALTER TABLE public.favorites ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
@@ -53,23 +53,23 @@ ALTER TABLE public.favorites ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
 
 
 --
--- Name: users; Type: TABLE; Schema: public; Owner: tpl522_10
+-- Name: users; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.users (
     id integer NOT NULL,
-    fistname character varying(255),
-    username character varying(255),
+    lastname character varying(255),
+    firstname character varying(255),
     email character varying(255),
     sub character varying(255),
     image character varying(255)
 );
 
 
-ALTER TABLE public.users OWNER TO tpl522_10;
+ALTER TABLE public.users OWNER TO postgres;
 
 --
--- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: tpl522_10
+-- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
 CREATE SEQUENCE public.users_id_seq
@@ -81,53 +81,53 @@ CREATE SEQUENCE public.users_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.users_id_seq OWNER TO tpl522_10;
+ALTER TABLE public.users_id_seq OWNER TO postgres;
 
 --
--- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: tpl522_10
+-- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
 ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
 
 
 --
--- Name: users id; Type: DEFAULT; Schema: public; Owner: tpl522_10
+-- Name: users id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_id_seq'::regclass);
 
 
 --
--- Data for Name: favorites; Type: TABLE DATA; Schema: public; Owner: tpl522_10
+-- Data for Name: favorites; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-
-
---
--- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: tpl522_10
---
-
-INSERT INTO public.users (id, fistname, username, email, sub, image) VALUES (1, NULL, 'Xochc2', 'xocaid@gmail.com', 'google-oauth2|111184663178301448473', 'https://lh3.googleusercontent.com/a/ALm5wu1nfTre2M5-lHKqa_HBF6JK4PV_UXuE5ejdtPOQ=s96-c');
-INSERT INTO public.users (id, fistname, username, email, sub, image) VALUES (3, NULL, NULL, 'babygirl12032097@aol.com', 'auth0|636d86daf2ea62cc6a5f3267', 'https://s.gravatar.com/avatar/cd21bd885409a3b835adc662466f3be1?s=480&r=pg&d=https%3A%2F%2Fcdn.auth0.com%2Favatars%2Fba.png');
-INSERT INTO public.users (id, fistname, username, email, sub, image) VALUES (2, NULL, 'Xochc2', 'xocaid@gmail.com', 'google-oauth2|111184663178301448473', 'https://lh3.googleusercontent.com/a/ALm5wu1nfTre2M5-lHKqa_HBF6JK4PV_UXuE5ejdtPOQ=s96-c');
+COPY public.favorites (id, user_id, start_location, end_location, distance, duration, latitude, longitude) FROM stdin;
+\.
 
 
 --
--- Name: favorites_id_seq; Type: SEQUENCE SET; Schema: public; Owner: tpl522_10
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.users (id, lastname, firstname, email, sub, image) FROM stdin;
+
+
+--
+-- Name: favorites_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
 SELECT pg_catalog.setval('public.favorites_id_seq', 1, false);
 
 
 --
--- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: tpl522_10
+-- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
 SELECT pg_catalog.setval('public.users_id_seq', 3, true);
 
 
 --
--- Name: favorites favorites_pkey; Type: CONSTRAINT; Schema: public; Owner: tpl522_10
+-- Name: favorites favorites_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.favorites
@@ -135,7 +135,7 @@ ALTER TABLE ONLY public.favorites
 
 
 --
--- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: tpl522_10
+-- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.users
@@ -145,4 +145,3 @@ ALTER TABLE ONLY public.users
 --
 -- PostgreSQL database dump complete
 --
-

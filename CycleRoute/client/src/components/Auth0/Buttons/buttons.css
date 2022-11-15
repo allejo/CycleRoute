@@ -1,23 +1,14 @@
-
-body {
-  /* background-color: #193232; */
-  background: rgb(25, 50, 50);
-  color: #ffc400;
-}
-button{
+.auth0-btns {
   background-color: #D4C964;
   border: 2px solid #ffc400;
   border-radius: 8px;
   color: #193232;
   font-weight: bold;
-  padding: 15px 30px;
+  padding: 10px 20px;
   text-align: center;
   text-decoration: none;
   /* display: inline-block; */
   font-size: 18px;
   margin: 10px 2px;
   cursor: pointer;
-}
-.navbar{
-float: right;
 }

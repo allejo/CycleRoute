@@ -1,9 +1,12 @@
 import "./margins.css";
+import cycleRouteBanner from "../Images/cycleRouteBanner.png";
+
 const Header = () => {
 
   return (
     <div className="header-component">
-      <h1>Bike Map Project</h1>
+      <img src = {cycleRouteBanner} className='cycleRoute-banner' alt='logo'/>
+      
     </div>
   )
 }
