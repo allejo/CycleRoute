@@ -66,12 +66,12 @@ app.get('/', (req, res) => {
 // })
 
 // // delete request
-app.delete('/users/:userId', cors(), async (req, res) =>{
-  const userId = req.params.userId;
-  //console.log("From the delete request-url", req.params);
-  await db.query('DELETE FROM users WHERE id=$1', [userId]);
-  res.status(200).end();
-});
+// app.delete('/users/:userId', cors(), async (req, res) =>{
+//   const userId = req.params.userId;
+//   //console.log("From the delete request-url", req.params);
+//   await db.query('DELETE FROM users WHERE id=$1', [userId]);
+//   res.status(200).end();
+// });
 
 //POST - USERS LOGGED IN
 app.post('/users', cors(), async (req, res) => {
