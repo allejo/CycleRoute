@@ -16,14 +16,20 @@ function AllStations() {
   //Los Angeles Metro Bike Share
   const displayMetro = () => {
     setMetro(!metro);
+    setBayWheels(false);
+    setBreeze(false);
   }
   //San Francisco Bay Wheels
   const displayBayWheels = () => {
     setBayWheels(!bayWheels);
+    setMetro(false);
+    setBreeze(false);
   }
   //Santa Monica Breeze Bike Share
   const displayBreeze = () => {
     setBreeze(!breeze);
+    setMetro(false)
+    setBayWheels(false)
   }
   //css rule to pass as disable - last night's example
   //or add a state to your component true/false
