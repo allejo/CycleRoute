@@ -2,6 +2,7 @@ import "./home.css";
 import React, { useRef, useState } from 'react';
 import { useJsApiLoader, Autocomplete } from '@react-google-maps/api';
 import Map from "../../map";
+import FavButton from "../Favorites/FavButton";
 
 
 
@@ -13,18 +14,18 @@ const Home = () => {
   //For DirectionsService: Takes Start & End Locations
   const [originPlace, setOriginPlace] = useState(null)
   const [destinationPlace, setDestinationPlace] = useState(null)
-  
+
   //Autocomplete (as per documentation) - for the originPlace/destinationPlace
   //Places API
   const originAutocompleteRef = useRef(null)
   const destinationAutocompleteRef = useRef(null)
-  
+
   //Required to access Maps API and Places API/Library
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: process.env.REACT_APP_API_KEY,
     libraries: ['places'],
   })
-  
+
   //onClick to Submit Info & Display Route on Map
   //getPlace(): Place interface contains info to locate, identify/describe a place for DirectionsRequest/DistanceMatrixRequest
   //geometry - api library; allows us to access the latlng
@@ -36,13 +37,16 @@ const Home = () => {
     setOriginPlace(originAutocompleteRef.current?.getPlace()?.geometry?.location)
     setDestinationPlace(destinationAutocompleteRef.current?.getPlace()?.geometry?.location)
   }
-  
+
   //Default Location for Map: Los Angeles, CA
   const center = {
     lat: 34.052235,
     lng: -118.243683
   };
 
+
+  console.log(originAutocompleteRef)
+  console.log(destinationAutocompleteRef)
   //CATCH
   if (!isLoaded) {
     return <div>Loading...</div>
@@ -86,7 +90,9 @@ const Home = () => {
           <div>
             <Map originPlace={originPlace} destinationPlace={destinationPlace} onMapLoad={setMap} onDurationChange={setDuration} onDistanceChange={setDistance} center={center} />
           </div>
-
+          <div>
+            <FavButton />
+          </div>
         </div>
       </div>
     )

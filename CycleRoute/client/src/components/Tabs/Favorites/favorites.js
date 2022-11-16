@@ -1,6 +1,7 @@
 // import { useState } from 'react';
 
 const Favorites = () => {
+
   //variable to store favorites items
   // const [favoritesList, setFavoritesList] = useState([]);
 
@@ -31,6 +32,9 @@ const Favorites = () => {
   return (
     <div className="favorites-component">
       <h1>This is the Favorites page.</h1>
+      {/* <button className={existsFavorite(element) ? 'Favorite' : 'Not Favorite'}>
+  Favorite
+</button> */}
     </div>
   )
 };

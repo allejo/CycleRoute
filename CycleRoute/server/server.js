@@ -19,14 +19,18 @@ app.get('/', (req, res) => {
 });
 
 // create the get request
-// app.get('/users', cors(), async (req, res) => {
-//   try {
-//     const { rows: users } = await db.query('SELECT * FROM users');
-//     res.send(users);
-//   } catch (e) {
-//     return res.status(400).json({ e });
-//   }
-// });
+app.get('/favorites', cors(), async (req, res) => {
+  const userID = req.query.user_id
+  console.log(userID, 'GET request from /favorites ')
+  try {
+    // const { rows: favorites } = await db.query('SELECT * FROM favorites');
+    const { rows: favorites } = await db.query('SELECT * FROM favorites WHERE user_id = $1 ', [userID]);
+    res.send(favorites);
+  } catch (e) {
+    console.error(e)
+    return res.status(400).json({ e });
+  }
+});
 
 // // create the POST request
 // app.post('/users', cors(), async (req, res) => {
@@ -97,6 +101,8 @@ app.post('/users', cors(), async (req, res) => {
     console.log(result);
   }
 });
+
+
 
 app.listen(PORT, () => {
   console.log(`Server is running on PORT: ${PORT}.`);

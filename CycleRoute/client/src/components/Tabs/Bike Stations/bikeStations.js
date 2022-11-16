@@ -5,7 +5,6 @@ import { slice } from "lodash";
 const BikeStations = ({ apiEndpoint }) => {
   const [stations, setStations] = useState([]);
   const [searchStations, setSearchStations] = useState([]);
-
   const [isCompleted, setIsCompleted] = useState(false);
   const [index, setIndex] = useState(12);
   const initialStations = slice(stations, 0, index);
@@ -15,7 +14,7 @@ const BikeStations = ({ apiEndpoint }) => {
     fetch(`http://api.citybik.es/v2/networks/${apiEndpoint}`)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data, "Testing from bikeStations fetch request.");
+        // console.log(data, "Testing from bikeStations fetch request.");
         //by adding setAllStations, it allows us to see all the data returned to the cards for the search bar
         //network.stations needs to be added in order to access the stations KEY information directly. Since Stations Key is an array the info we will get for the useState is [].
         setSearchStations(data.network.stations);
@@ -23,9 +22,9 @@ const BikeStations = ({ apiEndpoint }) => {
       });
   };
 
+  //LOAD MORE FUNCTION - Button onClick Event
   const loadMore = () => {
-    setIndex(index + 4);
-    console.log(index);
+    setIndex(index + 8);
     if (index >= stations.length) {
       setIsCompleted(true);
     } else {
@@ -43,14 +42,14 @@ const BikeStations = ({ apiEndpoint }) => {
         .toLowerCase()
         .includes(value))
     )
-    //setStations(filteredAllCards) is to  display the cards we want to display at the time
+    //setStations(filteredStations) displays filtered stations from search bar
     setStations(filteredStations)
   }
 
   return (
     <div>
       {/* SearchBar */}
-      <input className='search-box' placeholder='Search' onInput={filterStations}></input>
+      <input className='search-bar' placeholder='Search...' onInput={filterStations}></input>
       <div className='allstations'>
 
         {/* By adding  .slice(), it allows you to slice the incoming data, so that you see the first array  issue.
@@ -59,18 +58,13 @@ const BikeStations = ({ apiEndpoint }) => {
           return (
             <BikeStationsCard key={index} singleCard={station} />
           )
-        }
-        )}
+        })}
 
       </div>
 
-      <div>
-        {isCompleted ? (
-          <button onClick={loadMore} type="button">
-            That's It
-          </button>
-        ) : (
-          <button onClick={loadMore} type="button">
+      <div className='loadMore-component'>
+        {isCompleted ? null : (
+          <button className='loadMore-btn' onClick={loadMore} type="button">
             View More...
           </button>
         )}

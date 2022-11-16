@@ -57,9 +57,10 @@ const Map = ({ originPlace, destinationPlace, onMapLoad, onDurationChange, onDis
 
         {/*DIRECTIONS SERVICE: Calculates directions, receives directions request, returns EFFICIENT path, travel time optimized.; NEEDED TO WORK WITH DIRECTIONS RENDERER*/}
         {/*Per documentation. Options & callback are required. originPlace & destinationPlace are needed to identify location for directions request. */}
-        {
+        {          
           (originPlace !== null && destinationPlace !== null)
           && (<DirectionsService
+
             options={{
               destination: destinationPlace,
               origin: originPlace,
@@ -76,7 +77,7 @@ const Map = ({ originPlace, destinationPlace, onMapLoad, onDurationChange, onDis
           (directionsResponse !== null && (
             <DirectionsRenderer
               options={{
-                directions: directionsResponse
+                directions: directionsResponse,             
               }}
             />
           ))
