@@ -1,9 +1,14 @@
 import BikeStationsCard from './bikeStationsCard';
 import { useState, useEffect } from 'react';
+import { slice } from "lodash";
 
 const BikeStations = ({ apiEndpoint }) => {
   const [stations, setStations] = useState([]);
   const [searchStations, setSearchStations] = useState([]);
+
+  const [isCompleted, setIsCompleted] = useState(false);
+  const [index, setIndex] = useState(12);
+  const initialStations = slice(stations, 0, index);
 
 
   const fetchStationsData = () => {
@@ -16,6 +21,16 @@ const BikeStations = ({ apiEndpoint }) => {
         setSearchStations(data.network.stations);
         setStations(data.network.stations);
       });
+  };
+
+  const loadMore = () => {
+    setIndex(index + 4);
+    console.log(index);
+    if (index >= stations.length) {
+      setIsCompleted(true);
+    } else {
+      setIsCompleted(false);
+    }
   };
 
   useEffect(fetchStationsData, []);
@@ -40,13 +55,25 @@ const BikeStations = ({ apiEndpoint }) => {
 
         {/* By adding  .slice(), it allows you to slice the incoming data, so that you see the first array  issue.
         {station.slice(0,1).map((station, index) */}
-        {stations.map((station, index) => {
+        {initialStations.map((station, index) => {
           return (
             <BikeStationsCard key={index} singleCard={station} />
           )
         }
         )}
 
+      </div>
+
+      <div>
+        {isCompleted ? (
+          <button onClick={loadMore} type="button">
+            That's It
+          </button>
+        ) : (
+          <button onClick={loadMore} type="button">
+            View More...
+          </button>
+        )}
       </div>
 
     </div>

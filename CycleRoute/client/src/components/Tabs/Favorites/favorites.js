@@ -1,4 +1,5 @@
-import { useState } from 'react';
+// import { useState } from 'react';
+
 const Favorites = () => {
   //variable to store favorites items
   // const [favoritesList, setFavoritesList] = useState([]);
@@ -30,7 +31,6 @@ const Favorites = () => {
   return (
     <div className="favorites-component">
       <h1>This is the Favorites page.</h1>
-
     </div>
   )
 };
