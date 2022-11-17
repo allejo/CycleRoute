@@ -12,6 +12,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static(REACT_BUILD_DIR));
 
+/*********************** GET REQUEST ***************************************/
 // creates an endpoint for the route
 app.get('/', (req, res) => {
   // res.json('Message from the backend.');
@@ -20,8 +21,8 @@ app.get('/', (req, res) => {
 
 // create the get request
 //Gets all the Favorites Routes in table related to the User.
-  app.get('/favorites/:sub', cors(), async (req, res) => {
-  const sub = req.params.sub
+app.get('/favorites/:sub', cors(), async (req, res) => {
+  const sub = req.params.sub;
   console.log(`GET request from Favorites Table(server) for userID: ${sub}.`)
   try {
     // const { rows: favorites } = await db.query('SELECT * FROM favorites');
@@ -33,51 +34,7 @@ app.get('/', (req, res) => {
   }
 });
 
-// // create the POST request
-// app.post('/users', cors(), async (req, res) => {
-//   const newUser = {
-//     firstname: req.body.firstname,
-//     lastname: req.body.lastname,
-//   };
-//   console.log([newUser.firstname, newUser.lastname]);
-//   const result = await db.query(
-//     'INSERT INTO users(firstname, lastname) VALUES($1, $2) RETURNING *',
-//     [newUser.firstname, newUser.lastname],
-//   );
-//   console.log(result.rows[0]);
-//   res.json(result.rows[0]);
-// });
-
-// //A put request - Update a student 
-// app.put('/users/:userId', cors(), async (req, res) =>{
-//   console.log(req.params);
-//   //This will be the id that I want to find in the DB - the student to be updated
-//   const userId = req.params.userId
-//   const updatedUser = { id: req.body.id, firstname: req.body.firstname, lastname: req.body.lastname}
-//   console.log("In the server from the url - the user id", userId);
-//   console.log("In the server, from the react - the user to be edited", updatedUser);
-//   // UPDATE students SET lastname = "something" WHERE id="16";
-//   const query = `UPDATE users SET lastname=$1, firstname=$2 WHERE id=${userId} RETURNING *`;
-//   const values = [updatedUser.lastname, updatedUser.firstname];
-//   try {
-//     const updated = await db.query(query, values);
-//     console.log(updated.rows[0]);
-//     res.send(updated.rows[0]);
-
-//   }catch(e){
-//     console.log(e);
-//     return res.status(400).json({e})
-//   }
-// })
-
-// // delete request
-// app.delete('/users/:userId', cors(), async (req, res) =>{
-//   const userId = req.params.userId;
-//   //console.log("From the delete request-url", req.params);
-//   await db.query('DELETE FROM users WHERE id=$1', [userId]);
-//   res.status(200).end();
-// });
-
+/*********************** POST REQUEST ***************************************/
 //POST - USERS LOGGED IN
 app.post('/users', cors(), async (req, res) => {
   const newUser = {
@@ -103,6 +60,73 @@ app.post('/users', cors(), async (req, res) => {
   }
 });
 
+// create the POST request
+//may need change to router.post
+app.post('/favorites', cors(), async (req, res) => {
+  const newFavRoute = {
+    sub: req.body.firstname,
+    start_location: req.body.lastname,
+    end_location: req.body.lastname,
+    distance: req.body.lastname,
+    duration: req.body.lastname,
+    start_lat: req.body.lastname,
+    start_long: req.body.lastname,
+    end_lat: req.body.lastname,
+    end_long: req.body.lastname
+  };
+  console.log([newFavRoute.sub, newFavRoute.start_location, newFavRoute.end_location, newFavRoute.distance, newFavRoute.duration, newFavRoute.start_lat, newFavRoute.start_long, newFavRoute.end_lat, newFavRoute.end_long]);
+
+  try {
+    const result = await db.query(
+      'INSERT INTO favorites(sub, start_location, end_location, distance, duration, start_lat, start_long, end_lat, end_long) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *',
+      [newFavRoute.sub, newFavRoute.start_location, newFavRoute.end_location, newFavRoute.distance, newFavRoute.duration, newFavRoute.start_lat, newFavRoute.start_long, newFavRoute.end_lat, newFavRoute.end_long],
+    );
+    console.log(result.rows[0]);
+    res.send(result.rows[0]);
+  } catch (e) {
+    console.error(e);
+    return res.status(400).json({ e });
+  }
+});
+
+/*********************** DELETE REQUEST ***************************************/
+// delete request
+//may need change to router.delete
+// app.delete('/favorites/:sub/:selectedRoute', cors(), async (req, res) => {
+//   const sub = req.params.sub;
+//   const selectedRoute = req.query.id;
+//   console.log(`DELETE request from Favorites table(server) for sub: ${sub} and selectedRoute: ${selectedRoute}.`);
+//   try {
+//     await db.query('DELETE FROM favorites WHERE sub = $1 and id = $2', [sub, selectedRoute]);
+//     res.send({ status: "success" });
+//   } catch (e) {
+//     console.error(e);
+//     return res.status(400).json({ e });
+//   }
+// });
+
+
+// //A put request - Update a student 
+// app.put('/users/:userId', cors(), async (req, res) =>{
+//   console.log(req.params);
+//   //This will be the id that I want to find in the DB - the student to be updated
+//   const userId = req.params.userId
+//   const updatedUser = { id: req.body.id, firstname: req.body.firstname, lastname: req.body.lastname}
+//   console.log("In the server from the url - the user id", userId);
+//   console.log("In the server, from the react - the user to be edited", updatedUser);
+//   // UPDATE students SET lastname = "something" WHERE id="16";
+//   const query = `UPDATE users SET lastname=$1, firstname=$2 WHERE id=${userId} RETURNING *`;
+//   const values = [updatedUser.lastname, updatedUser.firstname];
+//   try {
+//     const updated = await db.query(query, values);
+//     console.log(updated.rows[0]);
+//     res.send(updated.rows[0]);
+
+//   }catch(e){
+//     console.log(e);
+//     return res.status(400).json({e})
+//   }
+// })
 
 
 app.listen(PORT, () => {

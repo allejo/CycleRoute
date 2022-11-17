@@ -2,18 +2,12 @@ import { useState } from 'react'
 
 function FavButton() {
   // variable to store favorites items
-  const [favoritesList, setFavoritesList] = useState([]);
-
-  //save info from auth0 (sub)
-  //create new variable for info trying to save from api
-  //new variable to hold both USER saved info & API saved info
-  //post request - body returns info for both users&api
-
+  const [favorites, setFavorites] = useState([]);
 
   //function to add route to favorite list
   const addFavorite = route => {
     console.log('Favorite Button Clicked')
-    setFavoritesList([...favoritesList, route]);
+    setFavorites([...favorites, route]);
   };
 
   //function remove route from favorite list
