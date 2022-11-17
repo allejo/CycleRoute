@@ -19,12 +19,15 @@ app.get('/', (req, res) => {
 });
 
 // create the get request
-app.get('/favorites', cors(), async (req, res) => {
-  const userID = req.query.user_id
-  console.log(userID, 'GET request from /favorites ')
+//Gets all the Favorites Routes in table related to the User.
+// app.get('/:userID', cors(), async (req, res) => {
+        // const userID = 2;
+  app.get('/favorites/:sub', cors(), async (req, res) => {
+  const sub = req.params.sub
+  console.log(`GET request from Favorites Table(server) for userID: ${sub}.`)
   try {
     // const { rows: favorites } = await db.query('SELECT * FROM favorites');
-    const { rows: favorites } = await db.query('SELECT * FROM favorites WHERE user_id = $1 ', [userID]);
+    const { rows: favorites } = await db.query('SELECT * FROM favorites WHERE sub = $1', [sub]);
     res.send(favorites);
   } catch (e) {
     console.error(e)
@@ -93,7 +96,7 @@ app.post('/users', cors(), async (req, res) => {
   const valuesEmail = [newUser.email]
   const resultsEmail = await db.query(queryEmail, valuesEmail);
   if (resultsEmail.rows.length > 0) {
-    console.log(`Thank you for comming back`)
+    console.log(`Thank you for coming back`)
   } else {
     const query = 'INSERT INTO users(firstname, username, email, sub, image) VALUES($1, $2, $3, $4, $5) RETURNING *'
     const values = [newUser.firstname, newUser.username, newUser.email, newUser.sub, newUser.image]

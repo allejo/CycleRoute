@@ -1,6 +1,6 @@
 import './App.css';
 import { useAuth0 } from '@auth0/auth0-react';
-// import Loading from "./components/Auth0/loading";
+import Loading from "./components/Auth0/loading";
 import React from 'react';
 import { ReactDOM } from 'react';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
@@ -17,10 +17,10 @@ function App() {
 
   // const { isLoading } = useAuth0();
   //Once user LOGS IN, Auth0 send token (that stores user profile info) to React and stores token in {user}.
-  const { user } = useAuth0();
-  // if (isLoading) {
-  //   return <Loading />;
-  // }
+  const { isLoading, user } = useAuth0();
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <div className="App">
@@ -35,7 +35,7 @@ function App() {
       <Routes >
         <Route path="/" element={<Home />}></Route>
         <Route path="/home" element={<Home />}></Route>
-        <Route path="/favorites" element={<Favorites />}></Route>
+        <Route path="/favorites" element={<Favorites user={user}/>}></Route>
         <Route path="/profile" element={<Profile user={user} />} />
         {/* <Route path="/bikestations" element={<BikeStations />} /> */}
         <Route path="/bikestations" element={<AllStations />} />
