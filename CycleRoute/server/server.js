@@ -20,8 +20,6 @@ app.get('/', (req, res) => {
 
 // create the get request
 //Gets all the Favorites Routes in table related to the User.
-// app.get('/:userID', cors(), async (req, res) => {
-        // const userID = 2;
   app.get('/favorites/:sub', cors(), async (req, res) => {
   const sub = req.params.sub
   console.log(`GET request from Favorites Table(server) for userID: ${sub}.`)
