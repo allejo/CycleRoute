@@ -14,7 +14,7 @@ function FavButton({ originAutocompleteRef, destinationAutocompleteRef, user }) 
         "end_long": destinationAutocompleteRef.current.gm_accessors_.place.ij.place.geometry.location.lng()
       })
     });
-    console.log('Favorite Button Clicked')
+    console.log('Route Added to Favorites List')
   };
 
   return (
@@ -31,7 +31,7 @@ export default FavButton;
 /*
 FavButton is tasked with ONLY adding API data into the database Favorites table. 
 No need for a useState as the favorites list(adding, deleting, confirming favorite exists) will handle it.
-To access API data, client-side gord to body:JSON.stringify(). For every field you expect to send to server as part 
+To access API data, client-side go to body:JSON.stringify(). For every field you expect to send to server as part 
 of the body, you need to declare it client-side. Client-side is where you would get the specific(nested) data. 
 Then the server-side can be called as normal.
 */

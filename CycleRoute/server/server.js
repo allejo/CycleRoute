@@ -86,20 +86,18 @@ app.post('/favorites', cors(), async (req, res) => {
 });
 
 /*********************** DELETE REQUEST ***************************************/
-// delete request
-//may need change to router.delete
-// app.delete('/favorites/:sub/:selectedRoute', cors(), async (req, res) => {
-//   const sub = req.params.sub;
-//   const selectedRoute = req.query.id;
-//   console.log(`DELETE request from Favorites table(server) for sub: ${sub} and selectedRoute: ${selectedRoute}.`);
-//   try {
-//     await db.query('DELETE FROM favorites WHERE sub = $1 and id = $2', [sub, selectedRoute]);
-//     res.send({ status: "success" });
-//   } catch (e) {
-//     console.error(e);
-//     return res.status(400).json({ e });
-//   }
-// });
+// DELETE - FAVORITES
+app.delete('/favorites/:id', cors(), async (req, res) => {
+  const selectedFav = req.params.id;
+  console.log(`DELETE request from favorites table(server) for selectedFav: ${selectedFav}.`);
+  try {
+    await db.query('DELETE FROM favorites WHERE id=$1', [selectedFav]);
+    res.send({ status: "success" });
+  } catch (e) {
+    console.error(e);
+    return res.status(400).json({ e });
+  }
+});
 
 
 // //A put request - Update a student 
