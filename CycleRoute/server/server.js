@@ -12,20 +12,19 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static(REACT_BUILD_DIR));
 
-/*********************** GET REQUEST ***************************************/
+/*********************** GET REQUESTS ***************************************/
 // creates an endpoint for the route
 app.get('/', (req, res) => {
   // res.json('Message from the backend.');
   res.sendFile(path.join(REACT_BUILD_DIR, 'index.html'));
 });
 
-// create the get request
+// GET - FAVORITES/USER
 //Gets all the Favorites Routes in table related to the User.
 app.get('/favorites/:sub', cors(), async (req, res) => {
   const sub = req.params.sub;
-  console.log(`GET request from Favorites Table(server) for userID: ${sub}.`)
+  console.log(`GET request from Favorites Table(server) for sub: ${sub}.`)
   try {
-    // const { rows: favorites } = await db.query('SELECT * FROM favorites');
     const { rows: favorites } = await db.query('SELECT * FROM favorites WHERE sub = $1', [sub]);
     res.send(favorites);
   } catch (e) {
@@ -34,7 +33,7 @@ app.get('/favorites/:sub', cors(), async (req, res) => {
   }
 });
 
-/*********************** POST REQUEST ***************************************/
+/*********************** POST REQUESTS ***************************************/
 //POST - USERS LOGGED IN
 app.post('/users', cors(), async (req, res) => {
   const newUser = {
@@ -60,8 +59,7 @@ app.post('/users', cors(), async (req, res) => {
   }
 });
 
-// create the POST request
-//may need change to router.post
+//POST - FAVORITES
 app.post('/favorites', cors(), async (req, res) => {
   const newFavRoute = {
     sub: req.body.sub,
