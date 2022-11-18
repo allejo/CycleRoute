@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import NotFavButton from './notFavButton';
 
 
-function FavoriteCard({ oneFavCard, user}) {
+function FavoriteCard({ oneFavCard, id, deleteFavorite }) {
   const [dropDown, setDropDown] = useState(true);
 
   const handleDropDown = () => {
@@ -29,7 +29,7 @@ function FavoriteCard({ oneFavCard, user}) {
             <h2>Distance: <span className='favcard-results-span'>{oneFavCard.distance}</span></h2>
             <h2>Duration: <span className='favcard-results-span'>{oneFavCard.duration}</span></h2>
           </div>
-          <NotFavButton user={user} />
+          <NotFavButton id={id} deleteFavorite={deleteFavorite} />
         </div>
       )}
 

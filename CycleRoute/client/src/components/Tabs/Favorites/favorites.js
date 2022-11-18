@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import FavoriteCard from './favCard';
-
 import './favorites.css';
 
 const Favorites = (props) => {
@@ -17,7 +16,7 @@ const Favorites = (props) => {
         setFavoritesList(data);
         console.log(data)
       })
-  },[]);
+  }, []);
 
   const deleteFavorite = async (handleDeleteFav) => {
     const response = await fetch(`/favorites/${handleDeleteFav}`, {
@@ -35,10 +34,7 @@ const Favorites = (props) => {
       <div className='favoriteslist'>
         {favoritesList.map((favorite, index) => {
           return (
-            <div>
-            <FavoriteCard key={index} oneFavCard={favorite} />
-            <button onClick={() => deleteFavorite(favorite.id)}></button>
-            </div>
+            <FavoriteCard key={index} oneFavCard={favorite} id={favorite.id} deleteFavorite={deleteFavorite} />
           )
         })}
       </div>
@@ -46,4 +42,5 @@ const Favorites = (props) => {
     </div>
   )
 };
+
 export default Favorites;

@@ -1,17 +1,10 @@
-import React, { useState } from 'react'
+import React from 'react';
 
-function NotFavButton({ deleteFavorite}) {
-const [deleteFavId, setDeleteFavId] = useState('');
-
-const handleDeleteFav = (e) => {
-  deleteFavorite(deleteFavId);
-  setDeleteFavId('');
-  console.log('Delete from notFav')
-};
+function NotFavButton({ id, deleteFavorite }) {
 
   return (
     <div>
-      <button onClick={() =>handleDeleteFav()}>
+      <button onClick={() => deleteFavorite(id)} >
         Remove Favorite
       </button>
     </div>
@@ -19,12 +12,3 @@ const handleDeleteFav = (e) => {
 }
 
 export default NotFavButton;
-
-  // // //function checks if route exists in favorite list
-  // const existsFavorite = route => {
-  //   if (favorites.filter(item => item.id === route.id).length > 0) {
-  //     return true;
-  //   };
-  //   return false;
-  // };
-
