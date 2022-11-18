@@ -3,10 +3,12 @@ import React, { useRef, useState } from 'react';
 import { useJsApiLoader, Autocomplete } from '@react-google-maps/api';
 import Map from "../../map";
 import FavButton from "../Favorites/FavButton";
+import { useAuth0 } from '@auth0/auth0-react';
 
 
 
 const Home = () => {
+  const {user} = useAuth0();
   const [map, setMap] = useState( /** @type google.maps.Map */(null));
   //To Display Bike Route Distance & Duration (Directions API)
   const [distance, setDistance] = useState('');
@@ -47,6 +49,7 @@ const Home = () => {
 
   console.log(originAutocompleteRef)
   console.log(destinationAutocompleteRef)
+
   //CATCH
   if (!isLoaded) {
     return <div>Loading...</div>
@@ -91,7 +94,7 @@ const Home = () => {
             <Map originPlace={originPlace} destinationPlace={destinationPlace} onMapLoad={setMap} onDurationChange={setDuration} onDistanceChange={setDistance} center={center} />
           </div>
           <div>
-            <FavButton />
+            <FavButton originAutocompleteRef={originAutocompleteRef} destinationAutocompleteRef={destinationAutocompleteRef} user={user} />
           </div>
         </div>
       </div>

@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import FavButton from './FavButton';
 
 function FavoriteCard({ oneFavCard }) {
   const [dropDown, setDropDown] = useState(true);
@@ -27,7 +28,7 @@ function FavoriteCard({ oneFavCard }) {
             <h2>Distance: <span className='favcard-results-span'>{oneFavCard.distance}</span></h2>
             <h2>Duration: <span className='favcard-results-span'>{oneFavCard.duration}</span></h2>
           </div>
-
+        <FavButton />
         </div>
       )}
 

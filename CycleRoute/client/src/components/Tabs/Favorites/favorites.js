@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import FavoriteCard from './favCard';
+
 import './favorites.css';
 
 const Favorites = (props) => {

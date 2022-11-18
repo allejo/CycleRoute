@@ -1,28 +1,39 @@
 import { useState } from 'react'
 
-function FavButton() {
-  // variable to store favorites items
-  const [favorites, setFavorites] = useState([]);
+function FavButton({ originAutocompleteRef, destinationAutocompleteRef, user }) {
 
   //function to add route to favorite list
-  const addFavorite = route => {
+
+  const addFavorite = async () => {
+    await fetch(`/favorites`, {
+      method: 'POST',
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        "sub": user.sub,
+        "start_location": originAutocompleteRef.current.gm_accessors_.place.ij.place.name,
+        "end_location": destinationAutocompleteRef.current.gm_accessors_.place.ij.place.name,
+        "start_lat": originAutocompleteRef.current.gm_accessors_.place.ij.place.geometry.location.lat(),
+        "start_long": originAutocompleteRef.current.gm_accessors_.place.ij.place.geometry.location.lng(),
+        "end_lat": destinationAutocompleteRef.current.gm_accessors_.place.ij.place.geometry.location.lat(),
+        "end_long": destinationAutocompleteRef.current.gm_accessors_.place.ij.place.geometry.location.lng()
+      })
+    });
     console.log('Favorite Button Clicked')
-    setFavorites([...favorites, route]);
   };
 
-  //function remove route from favorite list
-  //Filters out each route that matches route.id. 
+  // //function remove route from favorite list
+  // //Filters out each route that matches routbe.id. 
   // const deleteFavorite = route => {
   //   // console.log('NOT Favorite Button Clicked')
-  //   const filteredList = favoritesList.filter(
+  //   const filteredList = favorites.filter(
   //     item => item.id !== route.id
   //   );
-  //   setFavoritesList(filteredList);
+  //   setFavorites(filteredList);
   // };
 
-  // //function checks if route exists in favorite list
+  // // //function checks if route exists in favorite list
   // const existsFavorite = route => {
-  //   if (favoritesList.filter(item => item.id === route.id).length > 0) {
+  //   if (favorites.filter(item => item.id === route.id).length > 0) {
   //     return true;
   //   };
   //   return false;
@@ -31,7 +42,6 @@ function FavButton() {
   return (
     <div>
       <button onClick={addFavorite}>
-        {/* <button onClick={ () => existsFavorite() ? deleteFavorite() : addFavorite()}> */}
         Favorite Route
       </button>
     </div>
@@ -42,24 +52,8 @@ export default FavButton;
 
 //originPLacce, destinationPlace passing in as props 
 // const ToggleFavorite = ({ selectedPark }) => {
-//   // console.log(selectedPark.parkCode, "selected Park to Toggle")
 //   const [fav, setFav] = useState([])
 //   const [isSaved, setIsSaved] = useState()
-//   //for which user are you getting the favs for
-//   const { loginWithRedirect, user } = useAuth0();
-
-//   //fetches data for specific users.
-//   useEffect(() => {
-//     const displayFav = async () => {
-//       await fetch(`/favorites/${user.sub}`, {
-//       })
-//         .then(response => response.json())
-//         .then(data => {
-//           setFav(data);
-//         })
-//     }
-//     displayFav()
-//   }, []);
 
 //   //checks if data is in favorites list an uses if/else to do post(add) or delete request
 //   const handleClick = async () => {
