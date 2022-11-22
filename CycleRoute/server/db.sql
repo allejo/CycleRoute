@@ -1,4 +1,4 @@
--- Terminal: pg_dump -d nameOfDatabase;
+--
 -- PostgreSQL database dump
 --
 
@@ -16,12 +16,20 @@ SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
+ALTER TABLE ONLY public.favorites DROP CONSTRAINT favorites_sub_fkey;
+ALTER TABLE ONLY public.users DROP CONSTRAINT users_sub_key;
+ALTER TABLE ONLY public.users DROP CONSTRAINT users_pkey;
+ALTER TABLE ONLY public.favorites DROP CONSTRAINT favorites_pkey;
+ALTER TABLE public.users ALTER COLUMN id DROP DEFAULT;
+DROP SEQUENCE public.users_id_seq;
+DROP TABLE public.users;
+DROP TABLE public.favorites;
 SET default_tablespace = '';
 
 SET default_table_access_method = heap;
 
 --
--- Name: favorites; Type: TABLE; Schema: public; Owner: tpl522_10
+-- Name: favorites; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.favorites (
@@ -39,10 +47,8 @@ CREATE TABLE public.favorites (
 );
 
 
-ALTER TABLE public.favorites OWNER TO tpl522_10;
-
 --
--- Name: favorites_id_seq; Type: SEQUENCE; Schema: public; Owner: tpl522_10
+-- Name: favorites_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
 ALTER TABLE public.favorites ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
@@ -56,7 +62,7 @@ ALTER TABLE public.favorites ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
 
 
 --
--- Name: users; Type: TABLE; Schema: public; Owner: tpl522_10
+-- Name: users; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.users (
@@ -69,10 +75,8 @@ CREATE TABLE public.users (
 );
 
 
-ALTER TABLE public.users OWNER TO tpl522_10;
-
 --
--- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: tpl522_10
+-- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
 CREATE SEQUENCE public.users_id_seq
@@ -84,60 +88,54 @@ CREATE SEQUENCE public.users_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.users_id_seq OWNER TO tpl522_10;
-
 --
--- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: tpl522_10
+-- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
 ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
 
 
 --
--- Name: users id; Type: DEFAULT; Schema: public; Owner: tpl522_10
+-- Name: users id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_id_seq'::regclass);
 
 
 --
--- Data for Name: favorites; Type: TABLE DATA; Schema: public; Owner: tpl522_10
+-- Data for Name: favorites; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY public.favorites (id, sub, start_location, end_location, distance, duration, start_lat, start_long, end_lat, end_long, notes) FROM stdin;
-2	auth0|636d86daf2ea62cc6a5f3267	Vermont / 3rd	University of Southern California	4.0 mi	25 mins	34.06895539999999	-118.291235	34.0223519	-118.285117	\N
-3	google-oauth2|111184663178301448473	University of California, Los Angeles	Santa Monica Pier	5.9 mi	5.9 mi	34.068921	-118.4451811	34.0082821	-118.4987585	
-1	google-oauth2|111184663178301448473	Vermont / 3rd	University of Southern California	4.0 mi	25 mins	34.06895539999999	-118.291235	34.0223519	-118.285117	sdvsdv
-12	google-oauth2|111184663178301448473	USC Village	USC Viterbi School of Engineering	\N	\N	34.0256262	-118.285044	34.0206453	-118.2895082	diana 's favorite ride
-\.
+INSERT INTO public.favorites OVERRIDING SYSTEM VALUE VALUES (2, 'auth0|636d86daf2ea62cc6a5f3267', 'Vermont / 3rd', 'University of Southern California', '4.0 mi', '25 mins', 34.06895539999999, -118.291235, 34.0223519, -118.285117, NULL);
+INSERT INTO public.favorites OVERRIDING SYSTEM VALUE VALUES (3, 'google-oauth2|111184663178301448473', 'University of California, Los Angeles', 'Santa Monica Pier', '5.9 mi', '5.9 mi', 34.068921, -118.4451811, 34.0082821, -118.4987585, '');
+INSERT INTO public.favorites OVERRIDING SYSTEM VALUE VALUES (1, 'google-oauth2|111184663178301448473', 'Vermont / 3rd', 'University of Southern California', '4.0 mi', '25 mins', 34.06895539999999, -118.291235, 34.0223519, -118.285117, 'sdvsdv');
+INSERT INTO public.favorites OVERRIDING SYSTEM VALUE VALUES (12, 'google-oauth2|111184663178301448473', 'USC Village', 'USC Viterbi School of Engineering', NULL, NULL, 34.0256262, -118.285044, 34.0206453, -118.2895082, 'diana ''s favorite ride');
 
 
 --
--- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: tpl522_10
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY public.users (id, fistname, username, email, sub, image) FROM stdin;
-3	\N	\N	babygirl12032097@aol.com	auth0|636d86daf2ea62cc6a5f3267	https://s.gravatar.com/avatar/cd21bd885409a3b835adc662466f3be1?s=480&r=pg&d=https%3A%2F%2Fcdn.auth0.com%2Favatars%2Fba.png
-2	\N	Xochc2	xocaid@gmail.com	google-oauth2|111184663178301448473	https://lh3.googleusercontent.com/a/ALm5wu1nfTre2M5-lHKqa_HBF6JK4PV_UXuE5ejdtPOQ=s96-c
-\.
+INSERT INTO public.users VALUES (3, NULL, NULL, 'babygirl12032097@aol.com', 'auth0|636d86daf2ea62cc6a5f3267', 'https://s.gravatar.com/avatar/cd21bd885409a3b835adc662466f3be1?s=480&r=pg&d=https%3A%2F%2Fcdn.auth0.com%2Favatars%2Fba.png');
+INSERT INTO public.users VALUES (2, NULL, 'Xochc2', 'xocaid@gmail.com', 'google-oauth2|111184663178301448473', 'https://lh3.googleusercontent.com/a/ALm5wu1nfTre2M5-lHKqa_HBF6JK4PV_UXuE5ejdtPOQ=s96-c');
 
 
 --
--- Name: favorites_id_seq; Type: SEQUENCE SET; Schema: public; Owner: tpl522_10
+-- Name: favorites_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('public.favorites_id_seq', 12, true);
 
 
 --
--- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: tpl522_10
+-- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('public.users_id_seq', 3, true);
 
 
 --
--- Name: favorites favorites_pkey; Type: CONSTRAINT; Schema: public; Owner: tpl522_10
+-- Name: favorites favorites_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.favorites
@@ -145,7 +143,7 @@ ALTER TABLE ONLY public.favorites
 
 
 --
--- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: tpl522_10
+-- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.users
@@ -153,7 +151,7 @@ ALTER TABLE ONLY public.users
 
 
 --
--- Name: users users_sub_key; Type: CONSTRAINT; Schema: public; Owner: tpl522_10
+-- Name: users users_sub_key; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.users
@@ -161,7 +159,7 @@ ALTER TABLE ONLY public.users
 
 
 --
--- Name: favorites favorites_sub_fkey; Type: FK CONSTRAINT; Schema: public; Owner: tpl522_10
+-- Name: favorites favorites_sub_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.favorites
@@ -172,4 +170,3 @@ ALTER TABLE ONLY public.favorites
 -- PostgreSQL database dump complete
 --
 
-~ 
