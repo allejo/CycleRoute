@@ -11,7 +11,7 @@ const BikeStations = ({ apiEndpoint }) => {
 
 
   const fetchStationsData = () => {
-    fetch(`http://api.citybik.es/v2/networks/${apiEndpoint}`)
+    fetch(`https://api.citybik.es/v2/networks/${apiEndpoint}`)
       .then((response) => response.json())
       .then((data) => {
         // console.log(data, "Testing from bikeStations fetch request.");
