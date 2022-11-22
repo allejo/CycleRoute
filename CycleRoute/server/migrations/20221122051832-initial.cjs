@@ -3,11 +3,11 @@
 var dbm;
 var type;
 var seed;
-// var fs = require('fs');
-// var path = require('path');
+var fs = require('fs');
+var path = require('path');
 
-import fs from 'fs';
-import path from 'path';
+// import fs from 'fs';
+// import path from 'path';
 
 var Promise;
 
