@@ -1,5 +1,5 @@
 /* Replace with your SQL commands */
-CREATE TABLE public.favorites (
+CREATE TABLE favorites (
     id integer NOT NULL,
     sub character varying(255) NOT NULL,
     start_location character varying(255) NOT NULL,
@@ -13,7 +13,7 @@ CREATE TABLE public.favorites (
     notes character varying(500)
 );
 
-CREATE TABLE public.users (
+CREATE TABLE users (
     id integer NOT NULL,
     fistname character varying(255),
     username character varying(255),
@@ -22,7 +22,7 @@ CREATE TABLE public.users (
     image character varying(255)
 );
 
-CREATE SEQUENCE public.users_id_seq
+CREATE SEQUENCE users_id_seq
     AS integer
     START WITH 1
     INCREMENT BY 1
@@ -32,6 +32,6 @@ CREATE SEQUENCE public.users_id_seq
 
 SELECT pg_catalog.set_config('search_path', '', false);
 
-SELECT pg_catalog.setval('public.favorites_id_seq', 12, true);
+SELECT pg_catalog.setval('favorites_id_seq', 12, true);
 
-SELECT pg_catalog.setval('public.users_id_seq', 3, true);
+SELECT pg_catalog.setval('users_id_seq', 3, true);
