@@ -11,7 +11,7 @@ const BikeStationsCard = ({ singleCard }) => {
   }
 
   return (
-    <div className="singleBikeStation">
+    <div className="singleBikeStation" style={flipCard ? ({ backgroundColor: '#ffc400', color: '#193232' }) : (null)} onClick={handleFlipCard}>
       {flipCard ? (
         <div className='single-bikestation-card-full' onClick={handleFlipCard}>
 

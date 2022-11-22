@@ -1,25 +1,29 @@
-.map-container {
-  background: rgb(25,50,50);
-  /* background: rgb(25,50,50);
-  background: radial-gradient(circle, rgba(25,50,50,1) 0%, rgba(25,50,50,1) 0%, rgba(44,67,55,1) 85%, rgba(114,128,73,1) 100%); */
+.home-username{
+  text-align: center;
+  font-size: 26px;
+  }
+
+.auto-map-container {
+  background-color: rgb(114, 128, 73, .3);
   margin: 40px;
   padding: 15px;
   padding-bottom: 5px;
   position: sticky;
   border-radius: 8px;
+
 }
 
 .home-map {
   margin: 25px;
 }
 
-/************************ FORM ****************************/
+/************************ AUTOMCOMPLETE FORM ****************************/
 form {
   padding-left: 30px;
 }
 
 .autocomplete-input[type=text] {
-  width: 450px;
+  width:90%;
   padding: 13px 15px;
   margin: 8px 0;
   border: none;
