@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import NotFavButton from './notFavButton';
 
 
-function FavoriteCard({ oneFavCard, id, deleteFavorite, onClick }) {
+function FavoriteCard({ oneFavCard, id, deleteFavorite }) {
   const [dropDown, setDropDown] = useState(true);
   const [notes, setNotes] = useState('');
+
 
   const editFavorite = async () => {
     await fetch(`/favorites/${id}`, {
@@ -17,8 +18,8 @@ function FavoriteCard({ oneFavCard, id, deleteFavorite, onClick }) {
 
   const handleDropDown = () => {
     setDropDown(!dropDown);
-    onClick(oneFavCard);
   };
+
 
   return (
     <div className='allFavCards'>
@@ -41,17 +42,23 @@ function FavoriteCard({ oneFavCard, id, deleteFavorite, onClick }) {
             <h2>Duration: <span className='favcard-results-span'>{oneFavCard.duration}</span></h2>
           </div>
 
-          <div>
-            <textarea
-              className='notes'
-              type="text"
-              id="add-notes"
-              placeholder="Add your notes here..."
-              value={notes}
-              onChange={ (e) => setNotes(e.currentTarget.value)}
-            />
-            <button onClick={editFavorite}>Submit Notes</button>
-          </div>
+          <div className='notes-section'>
+            <h2 >Notes: <span className='favcard-results-span'>{oneFavCard.notes}</span></h2>
+            </div>
+
+
+            <div>
+              <textarea
+                className='notes-textarea'
+                type="text"
+                id="add-notes"
+                placeholder="Add your notes here..."
+                value={notes}
+                onChange={(e) => setNotes(e.currentTarget.value)}
+              />
+              <br />
+              <button onClick={editFavorite}>Add Notes</button>
+            </div>
 
           <NotFavButton id={id} deleteFavorite={deleteFavorite} />
         </div>

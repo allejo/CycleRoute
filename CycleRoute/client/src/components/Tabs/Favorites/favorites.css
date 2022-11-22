@@ -30,3 +30,7 @@
 .heart-btn{
 width: 28%;
 }
+.notes-textarea{
+  width: 50%;
+  height: 250px;
+}

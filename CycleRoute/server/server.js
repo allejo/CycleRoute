@@ -127,7 +127,7 @@ app.put('/favorites/:id', cors(), async (req, res) => {
     notes: req.body.notes,
     id:req.params.id
   };
-  console.log([editNotes.notes]);
+  console.log([editNotes.notes, editNotes.id]);
 
   try {
     const result = await db.query(
