@@ -1,5 +1,13 @@
+/* ALL STATIONS */
+/******************* LOGO *************************/
+.allstations-logo{
+  text-align: center;
+  margin-top: 40px;
+}
+/* BIKE STATIONS */
+/******************* CARD *************************/
 /* Aligns all post "cards" in a grid,limits of post going horizontally */
-.allstations {
+.allstations-cards {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-column-gap: 20px;
@@ -8,13 +16,15 @@
 }
 .search-bar{
   outline: none;
-  width: 90%;
+  width: 94%;
   border: 1px solid pink;
   font-size: 1rem;
   padding: 1rem;
   border-radius: .5rem;
   margin: 20px;
 }
+/* BIKE STATIONS CARD */
+/******************* BUTTONS *************************/
 .card-title{
   text-align: center;
 }
@@ -24,9 +34,11 @@
   padding: 10px;
   font-size: 18px;
 }
-.allstations-logo{
-  text-align: center;
+.singleBikeStation:hover{
+  background-color: #ffc400;
+  color:#193232;
 }
+/******************* BUTTONS *************************/
 .display-btns{
   text-align: center;
   margin: 10px;
@@ -35,8 +47,5 @@
   text-align: center;
   margin: 5px;
   position: absolute;
-  /* top: 50%; */
   left: 45%;
-  /* -ms-transform: translate(-50%, -50%); */
-  /* transform: translate(-50%, -50%); */
 }

@@ -8,7 +8,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 
 
 const Home = () => {
-  const {user} = useAuth0();
+  const { user } = useAuth0();
   const [map, setMap] = useState( /** @type google.maps.Map */(null));
   //To Display Bike Route Distance & Duration (Directions API)
   const [distance, setDistance] = useState('');
@@ -46,9 +46,8 @@ const Home = () => {
     lng: -118.243683
   };
 
-
-  console.log(originAutocompleteRef)
-  console.log(destinationAutocompleteRef)
+  // console.log(originAutocompleteRef)
+  // console.log(destinationAutocompleteRef)
 
   //CATCH
   if (!isLoaded) {
@@ -56,9 +55,14 @@ const Home = () => {
   } else {
     return (
       <div className="home">
-        <div className="map-container">
+        {!user ? null :
+          <div className="home-username">
+            <h1>Welcome {user.nickname.toUpperCase()}</h1>
+          </div>
+        }
+        <div className="auto-map-container">
 
-          <div className="search-bar-map">
+          <div className="autocomplete-container">
 
             <form>
               <Autocomplete
@@ -80,6 +84,7 @@ const Home = () => {
                   type='text'
                 />
               </Autocomplete>
+              
               {/********************************* BUTTONS *********************************/}
               <button className="search-bar-btn" onClick={calculateRoute} type='submit' >Map My Route</button>
               <button className="search-bar-btn" onClick={() => map.panTo(center)}>Reset</button>
@@ -91,11 +96,22 @@ const Home = () => {
           </div>
 
           <div>
-            <Map originPlace={originPlace} destinationPlace={destinationPlace} onMapLoad={setMap} onDurationChange={setDuration} onDistanceChange={setDistance} center={center} />
+            <Map
+              originPlace={originPlace}
+              destinationPlace={destinationPlace}
+              onMapLoad={setMap}
+              onDurationChange={setDuration}
+              onDistanceChange={setDistance}
+              center={center} />
           </div>
-          <div>
-            <FavButton originAutocompleteRef={originAutocompleteRef} destinationAutocompleteRef={destinationAutocompleteRef} user={user} />
-          </div>
+          {!user ? null :
+            <div>
+              <FavButton
+                originAutocompleteRef={originAutocompleteRef}
+                destinationAutocompleteRef={destinationAutocompleteRef}
+                user={user} />
+            </div>
+          }
         </div>
       </div>
     )

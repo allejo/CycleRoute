@@ -24,6 +24,7 @@ const Map = ({ originPlace, destinationPlace, onMapLoad, onDurationChange, onDis
   //https://maps.googleapis.com/maps/api/directions/json?mode=bicycling&origin=Disneyland&destination=Universal+Studios+Hollywood&key=KEY
   //setDistance & setDuration are getting the data from Directions API and returned in a JSON format
   function directionsCallback(response) {
+    console.log('DirectionCB' ,response)
     if (response !== null) {
       if (response.status === 'OK') {
         setDirectionsResponse(response)
@@ -39,7 +40,7 @@ const Map = ({ originPlace, destinationPlace, onMapLoad, onDurationChange, onDis
   const onLoadBicycle = bicyclingLayer => {
     console.log('bicyclingLayer: ', bicyclingLayer)
   }
-
+  console.log('Map Render')
   return (
     <div className='home-map'>
       <GoogleMap
@@ -57,7 +58,7 @@ const Map = ({ originPlace, destinationPlace, onMapLoad, onDurationChange, onDis
 
         {/*DIRECTIONS SERVICE: Calculates directions, receives directions request, returns EFFICIENT path, travel time optimized.; NEEDED TO WORK WITH DIRECTIONS RENDERER*/}
         {/*Per documentation. Options & callback are required. originPlace & destinationPlace are needed to identify location for directions request. */}
-        {          
+        {
           (originPlace !== null && destinationPlace !== null)
           && (<DirectionsService
 
@@ -77,7 +78,7 @@ const Map = ({ originPlace, destinationPlace, onMapLoad, onDurationChange, onDis
           (directionsResponse !== null && (
             <DirectionsRenderer
               options={{
-                directions: directionsResponse,             
+                directions: directionsResponse,
               }}
             />
           ))

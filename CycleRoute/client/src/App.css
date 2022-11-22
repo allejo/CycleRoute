@@ -18,6 +18,11 @@ button{
   margin: 10px 2px;
   cursor: pointer;
 }
+button:hover{
+  background-color: #ffc400;
+  color:#193232;
+}
+
 .navbar{
 float: right;
 }

@@ -5,7 +5,7 @@ function NotFavButton({ id, deleteFavorite }) {
   return (
     <div>
       <button onClick={() => deleteFavorite(id)} >
-        Remove Favorite
+        Remove Route
       </button>
     </div>
   )

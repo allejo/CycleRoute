@@ -20,7 +20,7 @@ function FavButton({ originAutocompleteRef, destinationAutocompleteRef, user }) 
   return (
     <div>
       <button onClick={addFavorite}>
-        Favorite Route
+        Add Route
       </button>
     </div>
   )

@@ -47,10 +47,10 @@ const BikeStations = ({ apiEndpoint }) => {
   }
 
   return (
-    <div>
+    <div className='bikestations-component'>
       {/* SearchBar */}
       <input className='search-bar' placeholder='Search...' onInput={filterStations}></input>
-      <div className='allstations'>
+      <div className='allstations-cards'>
 
         {/* By adding  .slice(), it allows you to slice the incoming data, so that you see the first array  issue.
         {station.slice(0,1).map((station, index) */}

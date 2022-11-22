@@ -122,6 +122,26 @@ app.delete('/favorites/:id', cors(), async (req, res) => {
 //   }
 // })
 
+app.put('/favorites/:id', cors(), async (req, res) => {
+  const editNotes = {
+    notes: req.body.notes,
+    id:req.params.id
+  };
+  console.log([editNotes.notes]);
+
+  try {
+    const result = await db.query(
+      'UPDATE favorites SET notes=$1 WHERE id=$2',
+      [editNotes.notes, editNotes.id],
+    );
+    console.log(result.rows[0]);
+    res.send(result.rows[0]);
+  } catch (e) {
+    console.error(e);
+    return res.status(400).json({ e });
+  }
+});
+
 
 app.listen(PORT, () => {
   console.log(`Server is running on PORT: ${PORT}.`);

@@ -38,18 +38,15 @@ function AllStations() {
   //try following a similar format for endpoint for button - to call that particular info
 
   return (
-    <div>
+    <div className="allstations-component">
       <div className="display-btns">
         {/* The logical AND (&&) operator returns the value to the right if the value to the left is truthy. */}
         <button className="display-btns" onClick={displayMetro} >Los Angeles Metro Bike Share</button>
         < button className="display-btns" onClick={displayBreeze} > Santa Monica Breeze Bike Share</button>
         <button className="display-btns" onClick={displayBayWheels} >San Francisco Bay Wheels</button>
       </div>
-    
 
-
-
-      <div>
+      <div className="displayed-content">
 
         {metro && (
           <div>
@@ -71,7 +68,7 @@ function AllStations() {
         )}
       </div>
       <div className="allstations-logo">
-      <img src={cycleRouteLogoSquare} className='cycleRoute-square' alt='logo'/>
+        <img src={cycleRouteLogoSquare} className='cycleRoute-square' alt='logo' />
       </div>
 
     </div >
