@@ -33,4 +33,11 @@ width: 28%;
 .notes-textarea{
   width: 50%;
   height: 250px;
+  border-radius: 12px;
+  border: 5px #ffc400 solid;
+  font-size: 1.5em;
+}
+.notes-textarea::placeholder{
+  color: #123232;
+
 }
