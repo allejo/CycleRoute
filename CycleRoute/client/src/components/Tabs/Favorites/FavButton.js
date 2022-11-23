@@ -1,6 +1,7 @@
-function FavButton({ originAutocompleteRef, destinationAutocompleteRef, user }) {
+function FavButton({ originAutocompleteRef, destinationAutocompleteRef, user, distance, duration }) {
 
   const addFavorite = async () => {
+
     await fetch(`/favorites`, {
       method: 'POST',
       headers: { "Content-Type": "application/json" },
@@ -11,9 +12,12 @@ function FavButton({ originAutocompleteRef, destinationAutocompleteRef, user }) 
         "start_lat": originAutocompleteRef.current.gm_accessors_.place.ij.place.geometry.location.lat(),
         "start_long": originAutocompleteRef.current.gm_accessors_.place.ij.place.geometry.location.lng(),
         "end_lat": destinationAutocompleteRef.current.gm_accessors_.place.ij.place.geometry.location.lat(),
-        "end_long": destinationAutocompleteRef.current.gm_accessors_.place.ij.place.geometry.location.lng()
+        "end_long": destinationAutocompleteRef.current.gm_accessors_.place.ij.place.geometry.location.lng(),
+        "distance": distance,
+        "duration": duration
       })
     });
+
     console.log('Route Added to Favorites List')
   };
 

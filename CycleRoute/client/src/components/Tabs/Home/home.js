@@ -109,6 +109,8 @@ const Home = () => {
               <FavButton
                 originAutocompleteRef={originAutocompleteRef}
                 destinationAutocompleteRef={destinationAutocompleteRef}
+                distance={distance}
+                duration={duration}
                 user={user} />
             </div>
           }

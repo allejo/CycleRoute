@@ -68,14 +68,16 @@ app.post('/favorites', cors(), async (req, res) => {
     start_lat: req.body.start_lat,
     start_long: req.body.start_long,
     end_lat: req.body.end_lat,
-    end_long: req.body.end_long
+    end_long: req.body.end_long,
+    distance: req.body.distance,
+    duration:req.body.duration
   };
-  console.log([newFavRoute.sub, newFavRoute.start_location, newFavRoute.end_location, newFavRoute.start_lat, newFavRoute.start_long, newFavRoute.end_lat, newFavRoute.end_long]);
+  console.log([newFavRoute.sub, newFavRoute.start_location, newFavRoute.end_location, newFavRoute.start_lat, newFavRoute.start_long, newFavRoute.end_lat, newFavRoute.end_long, newFavRoute.distance,newFavRoute.duration]);
 
   try {
     const result = await db.query(
-      'INSERT INTO favorites(sub, start_location, end_location, start_lat, start_long, end_lat, end_long) VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING *',
-      [newFavRoute.sub, newFavRoute.start_location, newFavRoute.end_location, newFavRoute.start_lat, newFavRoute.start_long, newFavRoute.end_lat, newFavRoute.end_long],
+      'INSERT INTO favorites(sub, start_location, end_location, start_lat, start_long, end_lat, end_long, distance, duration) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *',
+      [newFavRoute.sub, newFavRoute.start_location, newFavRoute.end_location, newFavRoute.start_lat, newFavRoute.start_long, newFavRoute.end_lat, newFavRoute.end_long, newFavRoute.distance,newFavRoute.duration],
     );
     console.log(result.rows[0]);
     res.send(result.rows[0]);

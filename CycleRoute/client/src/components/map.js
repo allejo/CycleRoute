@@ -25,6 +25,7 @@ const Map = ({ originPlace, destinationPlace, onMapLoad, onDurationChange, onDis
   //setDistance & setDuration are getting the data from Directions API and returned in a JSON format
   function directionsCallback(response) {
     console.log('DirectionCB' ,response)
+    console.log()
     if (response !== null) {
       if (response.status === 'OK') {
         setDirectionsResponse(response)
