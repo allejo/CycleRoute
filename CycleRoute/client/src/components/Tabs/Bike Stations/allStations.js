@@ -6,7 +6,7 @@ import cycleRouteLogoSquare from "../../Images/cycleRouteLogoSquare.png";
 
 function AllStations() {
   const [metro, setMetro] = useState(false);
-  const [bayWheels, setBayWheels] = useState(false);
+  const [briteBikes, setBriteBikes] = useState(false);
   const [breeze, setBreeze] = useState(false);
 
   //create a sep state to see if its active or not
@@ -16,12 +16,12 @@ function AllStations() {
   //Los Angeles Metro Bike Share
   const displayMetro = () => {
     setMetro(!metro);
-    setBayWheels(false);
+    setBriteBikes(false);
     setBreeze(false);
   }
   //San Francisco Bay Wheels
-  const displayBayWheels = () => {
-    setBayWheels(!bayWheels);
+  const displayBriteBikes = () => {
+    setBriteBikes(!briteBikes);
     setMetro(false);
     setBreeze(false);
   }
@@ -29,7 +29,7 @@ function AllStations() {
   const displayBreeze = () => {
     setBreeze(!breeze);
     setMetro(false)
-    setBayWheels(false)
+    setBriteBikes(false)
   }
   //css rule to pass as disable - last night's example
   //or add a state to your component true/false
@@ -42,8 +42,8 @@ function AllStations() {
       <div className="display-btns">
         {/* The logical AND (&&) operator returns the value to the right if the value to the left is truthy. */}
         <button className="display-btns" onClick={displayMetro} >Los Angeles Metro Bike Share</button>
-        < button className="display-btns" onClick={displayBreeze} > Santa Monica Breeze Bike Share</button>
-        <button className="display-btns" onClick={displayBayWheels} >San Francisco Bay Wheels</button>
+        <button className="display-btns" onClick={displayBreeze} > Santa Monica Breeze Bike Share</button>
+        <button className="display-btns" onClick={displayBriteBikes} >San Ramon Brite Bikes</button>
       </div>
 
       <div className="displayed-content">
@@ -61,9 +61,9 @@ function AllStations() {
         )
         }
 
-        {bayWheels && (
+        {briteBikes && (
           <div>
-            <BikeStations apiEndpoint="bay-wheels" />
+            <BikeStations apiEndpoint="britebikes" />
           </div>
         )}
       </div>
