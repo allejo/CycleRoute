@@ -37,7 +37,7 @@ app.get('/favorites/:sub', cors(), async (req, res) => {
 //POST - USERS LOGGED IN
 app.post('/users', cors(), async (req, res) => {
   const newUser = {
-    firstname: req.body.name,
+    fistname: req.body.name,
     username: req.body.nickname,
     email: req.body.email,
     sub: req.body.sub,
@@ -52,8 +52,8 @@ app.post('/users', cors(), async (req, res) => {
   if (resultsEmail.rows.length > 0) {
     console.log(`Thank you for coming back`)
   } else {
-    const query = 'INSERT INTO users(firstname, username, email, sub, image) VALUES($1, $2, $3, $4, $5) RETURNING *'
-    const values = [newUser.firstname, newUser.username, newUser.email, newUser.sub, newUser.image]
+    const query = 'INSERT INTO users(fistname, username, email, sub, image) VALUES($1, $2, $3, $4, $5) RETURNING *'
+    const values = [newUser.fistname, newUser.username, newUser.email, newUser.sub, newUser.image]
     const result = await db.query(query, values);
     console.log(result);
   }

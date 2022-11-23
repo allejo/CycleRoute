@@ -47,13 +47,13 @@ ___________________________________________________________
 <li>Google Places API</li>
 <li>CityBikes API</li>
 </ol>
-x
+
 <br/>
 ___________________________________________________________
 
 ### Installation:
 <strong>Note:</strong>
-This web application utilizes [Auth0 credentials](https://auth0.com/) () and [Google APIs](https://mapsplatform.google.com/), required to run properly.
+This web application utilizes [Auth0 credentials](https://auth0.com/) and [Google APIs](https://mapsplatform.google.com/), required to run properly.
 
 1. Clone the repo:
    ```sh
