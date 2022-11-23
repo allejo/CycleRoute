@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import NotFavButton from './notFavButton';
 
 
@@ -6,6 +6,12 @@ function FavoriteCard({ oneFavCard, id, deleteFavorite }) {
   const [dropDown, setDropDown] = useState(true);
   const [notes, setNotes] = useState('');
 
+//This useEffect is passing the information from favorite.js with prop oneFavCard
+//If dependecy array(2nd parameter []) has changed since the last render, will the effect be rerun if it changes.
+//Didn't set notes in here because it is a state variable, if notes were in the dependecy array it would trigger a rerun, resulting in an infinite loop.
+  useEffect(() => {
+    setNotes(oneFavCard.notes);
+  }, [oneFavCard.notes]);
 
   const editFavorite = async () => {
     await fetch(`/favorites/${id}`, {
@@ -14,6 +20,7 @@ function FavoriteCard({ oneFavCard, id, deleteFavorite }) {
       body: JSON.stringify({ notes })
     });
     console.log('Notes Edited on Favorites List')
+    window.location.reload(false);
   };
 
   const handleDropDown = () => {
@@ -44,21 +51,21 @@ function FavoriteCard({ oneFavCard, id, deleteFavorite }) {
 
           <div className='notes-section'>
             <h2 >Notes: <span className='favcard-results-span'>{oneFavCard.notes}</span></h2>
-            </div>
+          </div>
 
 
-            <div>
-              <textarea
-                className='notes-textarea'
-                type="text"
-                id="add-notes"
-                placeholder="Add your notes here..."
-                value={notes}
-                onChange={(e) => setNotes(e.currentTarget.value)}
-              />
-              <br />
-              <button onClick={editFavorite}>Add Notes</button>
-            </div>
+          <div>
+            <textarea
+              className='notes-textarea'
+              type="text"
+              id="add-notes"
+              placeholder="Add your notes here..."
+              value={notes}
+              onChange={(e) => setNotes(e.currentTarget.value)}
+            />
+            <br />
+            <button onClick={editFavorite}>Add Notes</button>
+          </div>
 
           <NotFavButton id={id} deleteFavorite={deleteFavorite} />
         </div>

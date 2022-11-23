@@ -9,7 +9,7 @@ const NavigationBar = (props) => {
   return (
     <>
       <div className="linkRoutes">
-        <Link to="/home"> Home</Link>
+        <Link to="/home">Home</Link>
         {/* Display Favorites/Profile tab IF user SIGNED IN. Can't alter Routes in App.js per error */}
         {!user ? null : <Link to="/favorites"> Favorites</Link>}
         {!user ? null : <Link to="/profile"> Profile</Link>}
