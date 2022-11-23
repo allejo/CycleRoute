@@ -28,7 +28,8 @@ To test out this page, please follow the link: https://server-i4nt.onrender.com 
 <li>Test User: <b>casualCycle@cycle.com</b></li>
 <li>Password: <b>Testing532@</b></li>
 </ul>
-
+<b>Note:</b> When users edits notes on Favorites tab, there is a bug and cannot refresh on hosting site, resulting in an error. Please navigate back to https://server-i4nt.onrender.com  and back to Favorites Tab to see updates. 
+<br/>
 ___________________________________________________________
 <br/>
 

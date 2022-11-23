@@ -20,6 +20,7 @@ function FavoriteCard({ oneFavCard, id, deleteFavorite }) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ notes })
     });
+    // onEditFavorite()
     console.log('Notes Edited on Favorites List')
     window.location.reload(false);
   };
