@@ -4,6 +4,7 @@
 ## Table of Contents
 <ul>
 <li>Description</li>
+<li>Visit CycleRoute</li>
 <li>Technologies Used</li>
 <li>APIs</li>
 <li>Installation</li>
@@ -19,6 +20,17 @@ CycleRoute is a web application for cyclist enthusiasts and casual cyclists alik
 <br/>
 
 ___________________________________________________________
+<br/>
+
+### Visit CycleRoute:
+To test out this page, please follow the link: https://server-i4nt.onrender.com .
+<ul>
+<li>Test User: <b>casualCycle@cycle.com</b></li>
+<li>Password: <b>Testing532@</b></li>
+</ul>
+
+___________________________________________________________
+<br/>
 
 ### Technologies Used:
    <table>
