@@ -25,6 +25,9 @@ To test out this page, please follow the link: https://server-i4nt.onrender.com 
 <li>Password: <b>Testing532@</b></li>
 </ul>
 
+This web application utilizes [Auth0 credentials](https://auth0.com/) and [Google APIs](https://mapsplatform.google.com/), required to run properly.
+
+
 ---
 ### Technologies Used:
    <table>
@@ -53,9 +56,6 @@ To test out this page, please follow the link: https://server-i4nt.onrender.com 
 
 ---
 ### Installation:
-<strong>Note:</strong>
-This web application utilizes [Auth0 credentials](https://auth0.com/) and [Google APIs](https://mapsplatform.google.com/), required to run properly.
-
 1. Clone the repo:
    ```sh
    git clone https://github.com/xocaid/CycleRoute.git
@@ -113,9 +113,8 @@ Enhance application reliability and user experience by implementing comprehensiv
 <br/>
 Currently, there is a bug that prevents the automatic refresh of notes on the Favorites tab when edited by users on the hosting site. This issue leads to an error in displaying the updated content. To view the latest updates to your notes, please follow these steps:
 <br/>
-<ol>
-<li> Navigate back to the hosting site by clicking the following link: https://server-i4nt.onrender.com.</li>
 
-<li> Return to the Favorites tab on the site.</li>
-</ol>
+1. Navigate back to the hosting site by clicking the following link: [Render](https://server-i4nt.onrender.com).
+2. Return to the Favorites tab on the site.
+
  By following these steps, you will be able to see the most recent changes you made to your notes. We apologize for the inconvenience caused by this bug and appreciate your understanding as we work to resolve it.
