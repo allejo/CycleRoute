@@ -10,6 +10,7 @@
 <li>Installation</li>
 <li>Testing</li>
 <li>Future Development</li>
+<li>Notes</li>
 </ul>
 
 ---
