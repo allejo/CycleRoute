@@ -12,11 +12,12 @@
 <li>Future Development</li>
 </ul>
 <br/>
+
 ___________________________________________________________
 <br/>
 
 ### Description:
-CycleRoute is a web application for cyclist enthusiasts and casual cyclists alike. CycleRoute allows users the ability to map the most efficient cycling route to reach their destination. An exciting feature includes local bike station information. 
+CycleRoute is a full stack web application designed for both cycling enthusiasts and casual cyclists. With CycleRoute, users can easily map the most efficient cycling route to reach their desired destination. Whether you're commuting to work, exploring a new city, or planning a leisurely ride, CycleRoute provides the tools you need to make your cycling experience enjoyable and convenient.
 <br/>
 
 ___________________________________________________________
@@ -28,8 +29,8 @@ To test out this page, please follow the link: https://server-i4nt.onrender.com 
 <li>Test User: <b>casualCycle@cycle.com</b></li>
 <li>Password: <b>Testing532@</b></li>
 </ul>
-<b>Note:</b> When users edits notes on Favorites tab, there is a bug and cannot refresh on hosting site, resulting in an error. Please navigate back to https://server-i4nt.onrender.com  and back to Favorites Tab to see updates. 
 <br/>
+
 ___________________________________________________________
 <br/>
 
@@ -54,13 +55,12 @@ ___________________________________________________________
 ___________________________________________________________
 
 ### APIs Used:
-<ol>
-<li>Google Maps JavaScript API</li>
-<li>Google Distance Matrix API</li>
-<li>Google Places API</li>
-<li>CityBikes API</li>
-</ol>
 
+- Google APIs:
+   - Maps JavaScript
+   - Distance Matrix
+   - Places
+- CityBikes API
 <br/>
 ___________________________________________________________
 
@@ -99,6 +99,7 @@ This web application utilizes [Auth0 credentials](https://auth0.com/) and [Googl
    ```
 
 <br/>
+
 ___________________________________________________________
 
 ### Testing:
@@ -106,14 +107,38 @@ To run tests on terminal, go to client side and run command:
 ```sh
 npm test
 ```
-
 <br/>
+
 ___________________________________________________________
 
 ### Future Development:
 <ol>
-<li>Add Step-By-Step Directions</li>
-<li>Add Map and Render Route on Favorites Tab </li>
-<li>Save Favorite Bike Stations</li>
+<li><b>Step-By-Step Directions: </b>
+Provide users detailed directions, making their journeys even more convenient and straightforward.</li>
+<li><b>Render Map and Route on Favorites Tab: </b>
+ Implement a feature to display users favorite routes directly on the Favorites tab, allowing for a quick overview of the cycling paths.
+</li> 
+<li><b>Save & Locate Favorite Bike Stations: </b>
+Introduce the capability for users to save and locate their preferred bike stations, providing a personalized experience that allows them to mark and store frequently visited or useful bike stations.
+</li>
+<li><b>More Robust Unit Tests and Edge Cases: </b>
+Enhance application reliability and user experience by implementing comprehensive unit tests covering various scenarios and edge cases, including handling unavailable bike routes and overseas destinations, ensuring seamless functionality and early issue identification for increased stability.
+</li>
 </ol>
+<br/>
 
+---
+
+### Notes:
+
+- <b>Bug with Refreshing Favorites Tab Edits on Hosting Site</b> 
+<br/>
+Currently, there is a bug that prevents the automatic refresh of notes on the Favorites tab when edited by users on the hosting site. This issue leads to an error in displaying the updated content. To view the latest updates to your notes, please follow these steps:
+<br/>
+<ol>
+<li> Navigate back to the hosting site by clicking the following link: https://server-i4nt.onrender.com.</li>
+
+<li> Return to the Favorites tab on the site.</li>
+<br/>
+ By following these steps, you will be able to see the most recent changes you made to your notes. We apologize for the inconvenience caused by this bug and appreciate your understanding as we work to resolve it.
+</ol>
