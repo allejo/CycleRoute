@@ -12,9 +12,7 @@
 <li>Future Development</li>
 </ul>
 
-
 ---
-
 ### Description:
 CycleRoute is a full stack web application designed for both cycling enthusiasts and casual cyclists. With CycleRoute, users can easily map the most efficient cycling route to reach their desired destination. Whether you're commuting to work, exploring a new city, or planning a leisurely ride, CycleRoute provides the tools you need to make your cycling experience enjoyable and convenient.
 
@@ -46,7 +44,6 @@ To test out this page, please follow the link: https://server-i4nt.onrender.com 
 
 ---
 ### APIs Used:
-
 - Google APIs:
    - Maps JavaScript
    - Distance Matrix
@@ -94,7 +91,6 @@ To run tests on terminal, go to client side and run command:
 npm test
 ```
 ---
-
 ### Future Development:
 <ol>
 <li><b>Step-By-Step Directions: </b>
@@ -112,7 +108,6 @@ Enhance application reliability and user experience by implementing comprehensiv
 
 ---
 ### Notes:
-
 <b>Bug with Refreshing Favorites Tab Edits on Hosting Site</b> 
 <br/>
 Currently, there is a bug that prevents the automatic refresh of notes on the Favorites tab when edited by users on the hosting site. This issue leads to an error in displaying the updated content. To view the latest updates to your notes, please follow these steps:
