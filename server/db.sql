@@ -16,16 +16,16 @@ SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
-ALTER TABLE ONLY public.favorites DROP CONSTRAINT favorites_sub_fkey;
-ALTER TABLE ONLY public.users DROP CONSTRAINT users_sub_key;
-ALTER TABLE ONLY public.users DROP CONSTRAINT users_pkey;
-ALTER TABLE ONLY public.favorites DROP CONSTRAINT favorites_pkey;
-ALTER TABLE public.users ALTER COLUMN id DROP DEFAULT;
-DROP SEQUENCE public.users_id_seq;
-DROP TABLE public.users;
-DROP TABLE public.favorites;
-SET default_tablespace = '';
+ALTER TABLE IF EXISTS ONLY public.favorites DROP CONSTRAINT favorites_sub_fkey;
+ALTER TABLE IF EXISTS ONLY public.users DROP CONSTRAINT users_sub_key;
+ALTER TABLE IF EXISTS ONLY public.users DROP CONSTRAINT users_pkey;
+ALTER TABLE IF EXISTS ONLY public.favorites DROP CONSTRAINT favorites_pkey;
+ALTER TABLE IF EXISTS public.users ALTER COLUMN id DROP DEFAULT;
+DROP SEQUENCE IF EXISTS public.users_id_seq;
+DROP TABLE IF EXISTS public.users;
+DROP TABLE IF EXISTS public.favorites;
 
+SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --

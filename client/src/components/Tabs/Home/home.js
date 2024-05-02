@@ -84,7 +84,7 @@ const Home = () => {
                   type='text'
                 />
               </Autocomplete>
-              
+
               {/********************************* BUTTONS *********************************/}
               <button className="search-bar-btn" onClick={calculateRoute} type='submit' >Map My Route</button>
               <button className="search-bar-btn" onClick={() => map.panTo(center)}>Reset</button>

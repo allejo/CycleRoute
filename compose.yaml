@@ -1,0 +1,42 @@
+services:
+  postgresql:
+    image: "postgres:16"
+    restart: unless-stopped
+    env_file: ./.env
+    environment:
+      - POSTGRES_DB=$POSTGRESDB_DATABASE
+      - POSTGRES_USER=$POSTGRESDB_USER
+      - POSTGRES_PASSWORD=$POSTGRESDB_ROOT_PASSWORD
+    ports:
+      - $POSTGRESDB_LOCAL_PORT:$POSTGRESDB_DOCKER_PORT
+    volumes:
+      - type: bind
+        source: ./var/database
+        target: /var/lib/pgsql/data
+      - ./server/db.sql:/docker-entrypoint-initdb.d/init.sql
+
+  web:
+    depends_on:
+      - postgresql
+    build:
+      context: .
+      args:
+        - AUTH0_DOMAIN=$AUTH0_DOMAIN
+        - AUTH0_CLIENT_ID=$AUTH0_CLIENT_ID
+        - G_MAPS_API_KEY=$GOOGLE_MAPS_API_KEY
+    restart: unless-stopped
+    env_file: ./.env
+    ports:
+      - $LOCAL_DEV_PORT:$WEB_APP_PORT
+    environment:
+      - DATABASE_URL=postgres://$POSTGRESDB_USER:$POSTGRESDB_ROOT_PASSWORD@$POSTGRESDB_HOST:$POSTGRESDB_DOCKER_PORT/$POSTGRESDB_DATABASE
+      - DATABASE_SSL=false
+      - PORT=$WEB_APP_PORT
+      - REACT_APP_API_KEY=$GOOGLE_MAPS_API_KEY
+      - REACT_APP_AUTH0_DOMAIN=$AUTH0_DOMAIN
+      - REACT_APP_AUTH0_CLIENT_ID=$AUTH0_CLIENT_ID
+    stdin_open: true
+    tty: true
+
+volumes:
+  db:
